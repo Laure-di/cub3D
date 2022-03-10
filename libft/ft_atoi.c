@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 20:47:06 by majacque          #+#    #+#             */
-/*   Updated: 2021/11/20 08:50:10 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:59:23 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_atoi(const char *str)
 
 	nb = 0;
 	sign = 1;
-	while (ft_is_wspace(*str) == true)
+	while (ft_iswspace(*str) == true)
 		str++;
 	if (*str == '-' || *str == '+')
 	{

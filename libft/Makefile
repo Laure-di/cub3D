@@ -88,9 +88,11 @@ ${NAME}:	${OBJS}
 
 all:		${NAME}
 
-${OBJD}%.o:	${SRCD}%.c
-			${MAKEDIR} ${OBJD}
+${OBJD}%.o:	${SRCD}%.c | ${OBJD}
 			${CC} ${CFLAGS} $< -o $@
+
+${OBJD}:
+			${MAKEDIR} $@
 
 clean:
 			${RM} ${OBJD}
