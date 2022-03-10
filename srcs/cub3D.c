@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:05:20 by lauremass         #+#    #+#             */
-/*   Updated: 2022/03/10 17:37:07 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:13:43 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static int	__data_init(t_data *data, char const * const filename)
 static void	__clear_data(t_data *data)
 {
 	// TODO release textures
+	// TODO free the map
+
 	mlx_destroy_image(data->mlx_ptr, data->img.ptr);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
@@ -76,7 +78,7 @@ int	main(int argc, char **argv)
 		mlx_loop_end, data.mlx_ptr);
 	mlx_loop(data.mlx_ptr);
 
-	printf("OK\n");
+	printf("Bye bye!\n");
 
 	__clear_data(&data);
 	return (0);
