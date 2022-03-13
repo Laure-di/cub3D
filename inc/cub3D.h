@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/03/10 14:09:26 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/12 20:20:30 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,6 @@ typedef struct s_img
 
 }				t_img;
 
-typedef struct s_color	t_color;
-
-struct s_color
-{
-	int	red;
-	int	green;
-	int	blue;
-};
-
 typedef struct s_texture	t_texture;
 
 struct s_texture
@@ -60,8 +51,8 @@ struct s_texture
 	t_img	south;
 	t_img	east;
 	t_img	west;
-	t_color	ceiling;
-	t_color	ground;
+	int		floor_color;
+	int		ceiling_color;
 };
 
 typedef struct	s_data

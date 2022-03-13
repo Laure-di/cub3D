@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:05:20 by lauremass         #+#    #+#             */
-/*   Updated: 2022/03/10 18:13:43 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/12 13:36:45 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static int	__error(t_data *data, char const * const str)
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 	}
-	ft_putstr_fd("Error\n", STDERR_FILENO);
-	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putendl_fd("Error", STDERR_FILENO);
+	ft_putendl_fd(str, STDERR_FILENO);
 	return (1);
 }
 
@@ -38,16 +38,16 @@ static int	__data_init(t_data *data, char const * const filename)
 
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
-		return (__error(data, "Mlx can't be initialize\n"));
+		return (__error(data, "Mlx can't be initialize"));
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!data->win_ptr)
-		return (__error(data, "Can't creat a new window\n"));
+		return (__error(data, "Can't creat a new window"));
 	data->img.ptr = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!data->img.ptr)
-		return (__error(data, "Can't creat a new image\n"));
+		return (__error(data, "Can't creat a new image"));
 	data->img.adrr = mlx_get_data_addr(data->img.ptr, &data->img.bpp, &data->img.line_len, &data->img.endian);
 	if (!data->img.adrr)
-		return (__error(data, "Can't get data addr of the image\n"));
+		return (__error(data, "Can't get data addr of the image"));
 	return (0);
 }
 
@@ -68,7 +68,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Error\nWrong number of argument\n", STDERR_FILENO);
+		ft_putendl_fd("Error\nWrong number of argument", STDERR_FILENO);
 		return (1);
 	}
 	if (__data_init(&data, argv[1]))
