@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 19:48:53 by majacque          #+#    #+#             */
-/*   Updated: 2022/03/12 20:05:53 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:56:05 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static const t_texture_lookup	g_texture_lookup[] = {
 {"WE", set_west},
 {"F ", set_floor},
 {"C ", set_ceiling},
-{"", NULL}
+{NULL, NULL}
 };
 
 #endif
