@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/03/12 20:20:30 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/15 16:14:23 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 typedef struct s_img
 {
 	void		*ptr;
+	int			width;
+	int			height;
 	char		*adrr;
 	int			bpp;
 	int			line_len;

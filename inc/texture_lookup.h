@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 19:48:53 by majacque          #+#    #+#             */
-/*   Updated: 2022/03/15 13:56:05 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:07:41 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TEXTURE_LOOKUP_H
 
 # include "cub3D.h"
+# include "../libft/libft.h"
 
 typedef struct s_texture_lookup	t_texture_lookup;
 

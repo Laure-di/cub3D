@@ -6,47 +6,96 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:21:47 by majacque          #+#    #+#             */
-/*   Updated: 2022/03/15 14:37:07 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:08:00 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/parsing.h"
+#include "../inc/texture_lookup.h"
 
 int	set_north(t_data *data, char *line)
 {
-	// TODO set_north()
-	int	i;
+	char	*filename;
 
-	i = 2;
-	while (line[i] && line[i] == ' ')
-		i++;
-	if (!line[i] || check_extension(&line[i], ".xpm"))
-		return (1); // TODO error message
-	// TODO strcdup(&line[i], ' ') --> filename
-	data->textures.north.ptr = mlx_xpm_file_to_image(data->mlx_ptr, , , ); // XXX do we need to get width and height of textures ?
+	line += 2;
+	filename = ft_strtrim(line, " ");
+	if (!filename)
+		return (error_parsing("ft_strtrim failed"));
+	if (check_extension(filename, ".xpm"))
+	{
+		free(filename);
+		return (error_parsing("Wrong file extension for north texture\n\
+		Usage: \"NO <file>.xpm\""));
+	}
+	data->textures.north.ptr = mlx_xpm_file_to_image(data->mlx_ptr, filename,
+			&data->textures.north.width, &data->textures.north.height);
+	free(filename);
 	if (!data->textures.north.ptr)
-		return (1); // TODO error message
-	while (line[i] && line[i] == ' ')
-		i++;
-	if (line[i])
-		return (1); // TODO error message
+		return (error_parsing("Failed to import north texture"));
 	return (0);
 }
 
 int	set_south(t_data *data, char *line)
 {
-	// TODO set_south()
+	char	*filename;
+
+	line += 2;
+	filename = ft_strtrim(line, " ");
+	if (!filename)
+		return (error_parsing("ft_strtrim failed"));
+	if (check_extension(filename, ".xpm"))
+	{
+		free(filename);
+		return (error_parsing("Wrong file extension for south texture\n\
+		Usage: \"SO <file>.xpm\""));
+	}
+	data->textures.south.ptr = mlx_xpm_file_to_image(data->mlx_ptr, filename,
+			&data->textures.south.width, &data->textures.south.height);
+	free(filename);
+	if (!data->textures.south.ptr)
+		return (error_parsing("Failed to import south texture"));
 	return (0);
 }
 
 int	set_east(t_data *data, char *line)
 {
-	// TODO set_east()
+	char	*filename;
+
+	line += 2;
+	filename = ft_strtrim(line, " ");
+	if (!filename)
+		return (error_parsing("ft_strtrim failed"));
+	if (check_extension(filename, ".xpm"))
+	{
+		free(filename);
+		return (error_parsing("Wrong file extension for east texture\n\
+		Usage: \"EA <file>.xpm\""));
+	}
+	data->textures.east.ptr = mlx_xpm_file_to_image(data->mlx_ptr, filename,
+			&data->textures.east.width, &data->textures.east.height);
+	free(filename);
+	if (!data->textures.east.ptr)
+		return (error_parsing("Failed to import east texture"));
 	return (0);
 }
 
 int	set_west(t_data *data, char *line)
 {
-	// TODO set_west()
+	char	*filename;
+
+	line += 2;
+	filename = ft_strtrim(line, " ");
+	if (!filename)
+		return (error_parsing("ft_strtrim failed"));
+	if (check_extension(filename, ".xpm"))
+	{
+		free(filename);
+		return (error_parsing("Wrong file extension for west texture\n\
+		Usage: \"WE <file>.xpm\""));
+	}
+	data->textures.west.ptr = mlx_xpm_file_to_image(data->mlx_ptr, filename,
+			&data->textures.west.width, &data->textures.west.height);
+	free(filename);
+	if (!data->textures.west.ptr)
+		return (error_parsing("Failed to import west texture"));
 	return (0);
 }
