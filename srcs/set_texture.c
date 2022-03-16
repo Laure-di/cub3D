@@ -6,12 +6,13 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:21:47 by majacque          #+#    #+#             */
-/*   Updated: 2022/03/15 17:08:00 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/15 19:00:34 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/texture_lookup.h"
 
+// TODO verify the size of imported images
 int	set_north(t_data *data, char *line)
 {
 	char	*filename;

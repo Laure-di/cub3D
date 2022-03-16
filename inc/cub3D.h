@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/03/15 16:14:23 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/16 17:39:34 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@ struct s_texture
 	int		ceiling_color;
 };
 
+typedef struct s_map	t_map;
+
+struct s_map
+{
+	char	**matrix;
+	int		widht;
+	int		height;
+};
+
 typedef struct	s_data
 {
 	// int			win_size;
@@ -64,6 +73,7 @@ typedef struct	s_data
 	void		*win_ptr;
 	t_img		img;
 	t_texture	textures;
+	t_map		map;
 }				t_data;
 
 #endif

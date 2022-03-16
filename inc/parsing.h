@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:14:07 by majacque          #+#    #+#             */
-/*   Updated: 2022/03/15 17:07:37 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:55:39 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 int	error_parsing(char const *const str);
 int	check_extension(char const *const filename, char const *const extension);
 int	get_textures(t_data *data, char const *const filename, int const fd);
+int	get_infos_map(t_data *data, int fd);
 int	parsing(t_data *data, char const *const filename);
 
 #endif
