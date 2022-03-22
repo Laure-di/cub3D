@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:54:57 by majacque          #+#    #+#             */
-/*   Updated: 2022/03/16 19:55:31 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/22 20:17:32 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static bool	__is_line_valid(char *str)
 	return (true);
 }
 
-int	get_infos_map(t_data *data, int fd)
+int	get_infos_map(t_data *data, int fd, int *const nb_line_map)
 {
 	char	*line;
 	int		ret;
@@ -36,6 +36,8 @@ int	get_infos_map(t_data *data, int fd)
 	{
 		if (!*line && data->map.height)
 			return (error_parsing("Empty line in map"));
+		else if (!*line)
+			(*nb_line_map)++;
 		if (!__is_line_valid(line))
 			return (error_parsing("Wrong character in map"));
 		data->map.height++;

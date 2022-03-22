@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:10:52 by majacque          #+#    #+#             */
-/*   Updated: 2022/03/15 18:52:45 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/22 19:13:40 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,19 @@ static bool	__is_all_textures_set(t_texture *textures)
 	return (true);
 }
 
-int	get_textures(t_data *data, char const *const filename, int const fd)
+int	get_textures(t_data *data, int const fd, int *const nb_line_map)
 {
 	char	*line;
 	int		ret;
 
 	line = NULL;
+	*nb_line_map = 0;
 	ret = get_next_line(fd, &line);
 	if (ret == -1)
 		return (error_parsing("Get_next_line failed"));
 	while (ret == 1)
 	{
+		(*nb_line_map)++;
 		if (!*line && __is_all_textures_set(&data->textures))
 			break ;
 		else if (!__is_valid_identifier(line) || __set_texture(data, line))
