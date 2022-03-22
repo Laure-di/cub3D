@@ -1,29 +1,47 @@
-NAME	=	cub3D
+#######################################
+#              COMPILER               #
+#######################################
+CC		= clang
 
-SRCS	=	cub3D.c
+######################################
+#             EXECUTABLE             #
+######################################
+NAME	= cub3D
 
-SRCS_DIR	=	srcs/
+#######################################
+#             DIRECTORIES             #
+#######################################
+SRCS_DIR	= srcs/
+OBJSDIR		= objs
+MLX_DIR		= mlx
+LIBFT_DIR	= libft
 
-OBJSDIR	=	objs
+######################################
+#            SOURCE FILES            #
+######################################
+SRCS	= cub3D.c
 
-MLX_DIR	= mlx
+######################################
+#            OBJECT FILES            #
+######################################
+OBJS	= ${addprefix ${OBJSDIR}/, ${SRCS:.c=.o}}
 
-LIBFT_DIR = libft
+DEP		= ${OBJS:.o=.d}
 
-OBJS	=	${addprefix ${OBJSDIR}/, ${SRCS:.c=.o}}
+#######################################
+#                FLAGS                #
+#######################################
+HEAD		= -I inc -I mlx
 
-DEP		=	${OBJS:.o=.d}
-
-HEAD	= -I inc -I mlx
-
-CC		=	clang
-
-CFLAGS	=	-Wall -Werror -Wextra -MMD -MP -g3
+CFLAGS		= -Wall -Werror -Wextra -MMD -MP -g3
 
 LIB_FLAGS	= -L ${MLX_DIR} -L ${LIBFT_DIR}
 
-MLX_FLAGS	=	-lft -lm -lmlx -lXext -lX11
+MLX_FLAGS	= -lft -lm -lmlx -lXext -lX11
 
+#######################################
+#                RULES                #
+#######################################
 .PHONY: clean fclean all re
 
 all:	${NAME}
@@ -47,4 +65,3 @@ fclean: clean
 		@rm -rf ${NAME}
 
 re: fclean all
-

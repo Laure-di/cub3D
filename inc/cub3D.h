@@ -6,7 +6,11 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/03/22 16:18:54 by lauremass        ###   ########.fr       */
+=======
+/*   Updated: 2022/03/16 17:39:34 by majacque         ###   ########.fr       */
+>>>>>>> 77e010afca80b061ccabab278bd84aadd40d852b
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +42,14 @@ typedef struct s_img	t_img;
 typedef s_img
 {
 	void		*ptr;
+	int			width;
+	int			height;
 	char		*adrr;
 	int			bpp;
 	int			line_len;
 	int			endian;
 }				t_img;
 
-typedef struct s_color	t_color;
-
-typedef s_color
-{
-	int	red;
-	int	green;
-	int	blue;
-};
 
 typedef struct s_texture	t_texture;
 
@@ -61,8 +59,17 @@ typedef s_texture
 	t_img	south;
 	t_img	east;
 	t_img	west;
-	t_color	ceiling;
-	t_color	ground;
+	int		floor_color;
+	int		ceiling_color;
+};
+
+typedef struct s_map	t_map;
+
+struct s_map
+{
+	char	**matrix;
+	int		widht;
+	int		height;
 };
 
 typedef struct s_data	t_data;
@@ -74,6 +81,7 @@ typedef	s_data
 	void		*win_ptr;
 	t_img		img;
 	t_texture	textures;
+	t_map		map;
 }				t_data;
 
 typedef struct s_position	t_position;
