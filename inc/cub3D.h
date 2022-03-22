@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/03/10 14:09:26 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/22 16:18:54 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,20 @@
 #  define WIN_HEIGHT 512
 # endif
 
-typedef struct s_img
+typedef struct s_img	t_img;
+
+typedef s_img
 {
 	void		*ptr;
 	char		*adrr;
 	int			bpp;
 	int			line_len;
 	int			endian;
-
 }				t_img;
 
 typedef struct s_color	t_color;
 
-struct s_color
+typedef s_color
 {
 	int	red;
 	int	green;
@@ -54,7 +55,7 @@ struct s_color
 
 typedef struct s_texture	t_texture;
 
-struct s_texture
+typedef s_texture
 {
 	t_img	north;
 	t_img	south;
@@ -64,7 +65,9 @@ struct s_texture
 	t_color	ground;
 };
 
-typedef struct	s_data
+typedef struct s_data	t_data;
+
+typedef	s_data
 {
 	// int			win_size;
 	void		*mlx_ptr;
@@ -72,5 +75,27 @@ typedef struct	s_data
 	t_img		img;
 	t_texture	textures;
 }				t_data;
+
+typedef struct s_position	t_position;
+
+typedef s_position
+{
+	float	x;
+	float	y;
+}	t_position;
+
+typedef struct s_player	t_player;
+
+typedef	s_player
+{
+	t_position	initial_position;
+	float		width;
+	float		height;
+	int			turnDirection;
+	int			walkDiretion;
+	float		rotationAngle;
+	float		walkSpeed;
+	float		turnSpeed; 
+}
 
 #endif
