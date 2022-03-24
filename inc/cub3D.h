@@ -6,11 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/03/22 16:18:54 by lauremass        ###   ########.fr       */
-=======
-/*   Updated: 2022/03/16 17:39:34 by majacque         ###   ########.fr       */
->>>>>>> 77e010afca80b061ccabab278bd84aadd40d852b
+/*   Updated: 2022/03/22 21:30:28 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +99,7 @@ typedef	s_player
 	int			walkDiretion;
 	float		rotationAngle;
 	float		walkSpeed;
-	float		turnSpeed; 
+	float		turnSpeed;
 }
 
 #endif
