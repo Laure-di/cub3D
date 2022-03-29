@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/03/16 17:39:34 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/28 12:05:12 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ struct s_map
 	char	**matrix;
 	int		widht;
 	int		height;
+	int		player_pos_x;
+	int		player_pos_y;
 };
 
 typedef struct	s_data
