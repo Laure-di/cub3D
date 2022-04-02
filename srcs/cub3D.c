@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:05:20 by lauremass         #+#    #+#             */
-/*   Updated: 2022/03/12 13:36:45 by majacque         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:39:54 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,8 @@ int	main(int argc, char **argv)
 	}
 	if (__data_init(&data, argv[1]))
 		return (1);
-
-	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask,
-		mlx_loop_end, data.mlx_ptr);
-	mlx_loop(data.mlx_ptr);
-
-	printf("Bye bye!\n");
-
+	// TODO setup_game(); avec initialize player?
+	launch_game(&data);
 	__clear_data(&data);
 	return (0);
 }

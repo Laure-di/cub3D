@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/03/22 21:30:28 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/02 18:06:31 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@
 # ifndef WIN_HEIGHT
 #  define WIN_HEIGHT 512
 # endif
+// TODO integrer tile_size dans 
+
+# define TILE_SIZE 64
+# define FOV_ANGLE (60 * M_PI / 180)
+# define NUM_RAYS WINDOW_WIDTH
 
 typedef struct s_img	t_img;
 
@@ -39,7 +44,7 @@ typedef s_img
 {
 	void		*ptr;
 	int			width;
-	int			height;
+	int			height;map
 	char		*adrr;
 	int			bpp;
 	int			line_len;

@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:27:27 by lauremass         #+#    #+#             */
-/*   Updated: 2022/03/22 18:38:08 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/03/29 17:39:23 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_position	__find_position(char **matrix, char player_orientation)
 	t_position	position;
 	int			y;
 	int			x;
-	
+
 	y = 0;
 	ft_bzero(position, sizeof(position));
 	while (matrix[y])
@@ -66,8 +66,8 @@ t_player		initialize_player(t_map map)
 	char		player_orientation;
 
 	ft_bzero(player, sizeof(player));
-	player_orientation = find_orientation(map.matrix);
-	player.initial_position = find_position(map);
+	player_orientation = __find_orientation(map.matrix);
+	player.initial_position = __find_position(map.matrix, player_orientation);
 	player.width = 5;
 	player.heigth = 5;
 	player.turnDirection = 0;

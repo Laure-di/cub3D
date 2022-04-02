@@ -19,7 +19,20 @@ LIBFT_DIR	= libft
 ######################################
 #            SOURCE FILES            #
 ######################################
-SRCS	= cub3D.c
+SRCS	= cub3D.c			\
+		  check_extension.c	\
+		  draw_utils.c		\
+		  error_parsing.c	\
+		  get_infos_map.c	\
+		  get_textures.c	\
+		  parsing.c			\
+		  pixel.c			\
+		  player.c			\
+		  randian_degree.c	\
+		  render_map.c		\
+		  set_color.c		\
+		  set_texture.c		\
+		  setup_game.c		\
 
 ######################################
 #            OBJECT FILES            #

@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_map.c                                       :+:      :+:    :+:   */
+/*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 18:37:17 by lauremass         #+#    #+#             */
-/*   Updated: 2022/03/29 16:54:09 by lauremass        ###   ########.fr       */
+/*   Created: 2022/03/29 15:58:04 by lauremass         #+#    #+#             */
+/*   Updated: 2022/03/29 16:18:00 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void	render_map(t_map map, t_data *data)
+int	render_tile(t_img *img, int tile_y, int tile_x, int tile_color)
 {
 	int	i;
-	int	y;
-	int	tile_x;
-	int	tile_y;
-	int	tile_color;
+	int	j;
 
-	i = 0;
-	while (i < map.height)
+	i = tile_y;
+	while (i < tile_y + TILE_SIZE)
 	{
-		y = 0;
-		while (y < map.width)
-		{
-			tile_x = y * TILE_SIZE;
-			tile_y = i * TILE_SIZE;
-			tile_color = map.matrix[i][y] != 0 ? 255 : 0;
-			render_tile(&data->img)
-			y++;
-		}
+		j = tile_x;
+		while (j < tile_x + TILE_SIZE)
+			img_pix_put(img, j++, i, tile_color);
 		i++;
 	}
+	return (0);
 }
