@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:27:27 by lauremass         #+#    #+#             */
-/*   Updated: 2022/03/29 17:39:23 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/03 14:28:59 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static t_position	__find_position(char **matrix, char player_orientation)
 	int			x;
 
 	y = 0;
-	ft_bzero(position, sizeof(position));
+	position.y = 0;
+	position.x = 0;
 	while (matrix[y])
 	{
 		x = 0;
@@ -41,13 +42,13 @@ static t_position	__find_position(char **matrix, char player_orientation)
 static char			__find_orientation(char **matrix)
 {
 	int		y;
-	int		x;
+	int		i;
 	char	orientation;
 
 	y = 0;
 	while (matrix[y])
 	{
-		x = 0;
+		i = 0;
 		while (matrix[y][i])
 		{
 			orientation = matrix[y][i];
@@ -65,15 +66,14 @@ t_player		initialize_player(t_map map)
 	t_player	player;
 	char		player_orientation;
 
-	ft_bzero(player, sizeof(player));
 	player_orientation = __find_orientation(map.matrix);
 	player.initial_position = __find_position(map.matrix, player_orientation);
 	player.width = 5;
-	player.heigth = 5;
+	player.height = 5;
 	player.turnDirection = 0;
 	player.walkDirection = 0;
 	player.rotationAngle = M_PI_2;
 	player.walkSpeed = 100;
-	player.turnSpeed = 45 * (PI / 180);
+	player.turnSpeed = 45 * (M_PI / 180);
 	return (player);
 }

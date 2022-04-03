@@ -6,7 +6,7 @@
 /*   By: lmasson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:15:21 by lmasson           #+#    #+#             */
-/*   Updated: 2022/03/10 15:19:52 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/04/03 14:29:14 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ double	deg2rad(double degrees)
 
 double	rad2deg(double radians)
 {
-	return (randians * (180 / M_PI));
+	return (radians * (180 / M_PI));
 }
 

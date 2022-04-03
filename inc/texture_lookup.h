@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 19:48:53 by majacque          #+#    #+#             */
-/*   Updated: 2022/03/15 17:07:41 by majacque         ###   ########.fr       */
+/*   Updated: 2022/04/03 14:39:08 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,6 @@ static const t_texture_lookup	g_texture_lookup[] = {
 {NULL, NULL}
 };
 
+int		error_parsing(char const *const str);
+int		check_extension(char const *const filename, char const *const extension);
 #endif

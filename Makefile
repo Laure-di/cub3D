@@ -25,6 +25,7 @@ SRCS	= cub3D.c			\
 		  error_parsing.c	\
 		  get_infos_map.c	\
 		  get_textures.c	\
+		  get_map.c			\
 		  parsing.c			\
 		  pixel.c			\
 		  player.c			\
