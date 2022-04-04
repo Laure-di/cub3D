@@ -34,6 +34,7 @@ SRCS	= cub3D.c			\
 		  set_color.c		\
 		  set_texture.c		\
 		  setup_game.c		\
+		  check_map.c		\
 
 ######################################
 #            OBJECT FILES            #

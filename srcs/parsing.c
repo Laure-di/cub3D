@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:55:50 by majacque          #+#    #+#             */
-/*   Updated: 2022/03/22 20:22:19 by majacque         ###   ########.fr       */
+/*   Updated: 2022/04/04 17:54:16 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	parsing(t_data *data, char const *const filename)
 		return (1);
 	}
 	close(fd);
-	// TODO check the map
+	if (check_map(&data->map))
+		return (error_parsing("The format of the map is not right"));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:05:20 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/03 15:13:01 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/04 17:36:10 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ static int	__data_init(t_data *data, char const * const filename)
 {
 	ft_bzero(data, sizeof(*data));
 
-	// TODO parsing()
-	(void)filename;
-
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		return (__error(data, "Mlx can't be initialize"));
@@ -48,6 +45,7 @@ static int	__data_init(t_data *data, char const * const filename)
 	data->img.adrr = mlx_get_data_addr(data->img.ptr, &data->img.bpp, &data->img.line_len, &data->img.endian);
 	if (!data->img.adrr)
 		return (__error(data, "Can't get data addr of the image"));
+	parsing(data, filename);
 	return (0);
 }
 

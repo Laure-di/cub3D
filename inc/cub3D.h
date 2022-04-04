@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/03 15:12:59 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/04 17:27:37 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,7 @@ int		render(t_data *data);
 void	render_map(t_map map, t_data *data);
 int		render_tile(t_img *img, int tile_y, int tile_x, int tile_color);
 void	img_pix_put(t_img *img, int x, int y, int color);
+int		parsing(t_data *data, char const *const filename);
+int		check_map(t_map *map);
 
 #endif
