@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 14:10:52 by majacque          #+#    #+#             */
-/*   Updated: 2022/04/04 17:54:19 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/05 18:54:33 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static bool	__is_valid_identifier(char *line)
 {
 	if (ft_strncmp(line, "NO", 2) && ft_strncmp(line, "SO", 2)
 		&& ft_strncmp(line, "EA", 2) && ft_strncmp(line, "WE", 2)
-		&& ft_strncmp(line, "F ", 2) && ft_strncmp(line, "C ", 2) && ft_strncmp(line, "\0", 1))
+		&& ft_strncmp(line, "F ", 2) && ft_strncmp(line, "C ", 2)
+		&& ft_strncmp(line, "\0", 1))
 	{
 		ft_putstr_fd("Error\nWrong texture identifier: ", STDERR_FILENO);
 		ft_putendl_fd(line, STDERR_FILENO);
@@ -29,6 +30,8 @@ static int	__set_texture(t_data *data, char *line)
 {
 	int	i;
 
+	if (!*line)
+		return (0);
 	i = 0;
 	while (g_texture_lookup[i].id)
 	{

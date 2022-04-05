@@ -6,20 +6,26 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:55:50 by majacque          #+#    #+#             */
-/*   Updated: 2022/04/04 17:54:16 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/05 18:32:51 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parsing.h"
 
-void	clear_map(char **map, int height)
+void	clear_map(char ***map, int height)
 {
 	int	i;
 
+	if (!*map)
+		return ;
 	i = 0;
 	while (i < height)
-		free(map[i++]);
-	free(map);
+	{
+		free((*map)[i]);
+		i++;
+	}
+	free(*map);
+	*map = NULL;
 }
 
 int	parsing(t_data *data, char const *const filename)
@@ -48,6 +54,6 @@ int	parsing(t_data *data, char const *const filename)
 	}
 	close(fd);
 	if (check_map(&data->map))
-		return (error_parsing("The format of the map is not right"));
+		return (1);
 	return (0);
 }

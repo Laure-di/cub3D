@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 09:53:22 by majacque          #+#    #+#             */
-/*   Updated: 2022/04/04 14:33:25 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/05 18:50:19 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static char	**__alloc_matrix(t_map *map)
 		matrix[i] = ft_calloc(map->widht, sizeof(char));
 		if (!matrix[i])
 		{
-			clear_map(matrix, i);
+			clear_map(&matrix, i);
 			return (NULL);
 		}
 		i++;
@@ -71,7 +71,7 @@ static char	**__alloc_matrix(t_map *map)
 
 static int	__is_map_valid(t_map *map, char **matrix_check, int x, int y)
 {
-	if (x == 0 || x == map->widht || y == 0 || y == map->height)
+	if (x == 0 || x == map->widht || y == 0 || y == map->height || map->matrix[y][x] == ' ')
 		return (error_parsing("Map not surrounded by walls"));
 	if (map->matrix[y][x] != '0' && !__is_player(map->matrix[y][x]))
 		return (error_parsing("Invalid character in map"));
@@ -101,7 +101,10 @@ int	check_map(t_map *map)
 	if (!matrix_check)
 		return (error_parsing("Ft_calloc failed"));
 	if (__is_map_valid(map, matrix_check, map->player_pos_x, map->player_pos_y))
+	{
+		clear_map(&matrix_check, map->height);
 		return (1);
-	clear_map(matrix_check, map->height);
+	}
+	clear_map(&matrix_check, map->height);
 	return (0);
 }

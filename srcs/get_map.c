@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:23:56 by majacque          #+#    #+#             */
-/*   Updated: 2022/04/04 14:33:23 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/05 18:46:44 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	__goto_line_map(int const fd, int line_map)
 
 	line = NULL;
 	ret = get_next_line(fd, &line);
-	while (ret == 1 && line_map-- > 0)
+	while (ret == 1 && line_map-- > 1)
 	{
 		free(line);
 		get_next_line(fd, &line);
@@ -43,7 +43,7 @@ static int	__calloc_map(t_data *data)
 		data->map.matrix[i] = ft_calloc(data->map.widht, sizeof(char));
 		if (!data->map.matrix[i])
 		{
-			clear_map(data->map.matrix, data->map.height);
+			clear_map(&data->map.matrix, data->map.height);
 			return (1);
 		}
 		i++;
@@ -77,13 +77,14 @@ static int	__fill_matrix(t_data *data, int const fd)
 	{
 		if (i >= data->map.height)
 			return (error_parsing("The map should be the last element"));
-		ft_strcpy(data->map.matrix[i], line);
+		ft_strncpy(data->map.matrix[i], line, data->map.widht);
 		if ((int)ft_strlen(line) < data->map.widht)
 			__fill_with_spaces(data->map.matrix[i], data->map.widht);
 		i++;
 		free(line);
 		ret = get_next_line(fd, &line);
 	}
+	free(line);
 	if (ret == -1)
 		return (error_parsing("Get_next_line failed"));
 	return (0);
