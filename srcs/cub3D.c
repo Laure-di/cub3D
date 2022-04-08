@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:05:20 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/05 18:52:16 by majacque         ###   ########.fr       */
+/*   Updated: 2022/04/05 21:39:05 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	main(int argc, char **argv)
 		return (1);
 	// TODO setup_game(); avec initialize player?
 	launch_game(&data);
+	print_data(data);
 	__clear_data(&data);
 	return (0);
 }

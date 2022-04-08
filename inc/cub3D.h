@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/05 18:13:57 by majacque         ###   ########.fr       */
+/*   Updated: 2022/04/08 17:08:01 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 # endif
 // TODO integrer tile_size dans 
 
-# define TILE_SIZE 64
 # define FOV_ANGLE (60 * M_PI / 180)
 # define NUM_RAYS WINDOW_WIDTH
 
@@ -115,10 +114,14 @@ int		main(int argc, char **argv);
 void	launch_game(t_data *data);
 int		render(t_data *data);
 void	render_map(t_map map, t_data *data);
-int		render_tile(t_img *img, int tile_y, int tile_x, int tile_color);
+int		render_tile(t_img *img, int tile_y, int tile_x, int tile_color, int width, int height);
 void	img_pix_put(t_img *img, int x, int y, int color);
 int		parsing(t_data *data, char const *const filename);
 int		check_map(t_map *map);
 void	clear_map(char ***map, int height);
+int		create_rgb(int r, int g, int b);
+
+/****** TO DELETE ********/
+void	print_data(t_data data);
 
 #endif

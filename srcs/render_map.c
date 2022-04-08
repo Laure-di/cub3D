@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:37:17 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/03 14:58:40 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/08 17:07:58 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	render_map(t_map map, t_data *data)
 		y = 0;
 		while (y < map.widht)
 		{
-			tile_x = y * TILE_SIZE;
-			tile_y = i * TILE_SIZE;
+			tile_x = y * (WIN_WIDTH / map.widht);
+			tile_y = i * (WIN_HEIGHT / map.height);
 			tile_color = map.matrix[i][y] != 0 ? 255 : 0;
-			render_tile(&data->img, tile_y, tile_x, tile_color);
+			render_tile(&data->img, tile_y, tile_x, create_rgb(tile_color, tile_color, tile_color), (WIN_WIDTH / map.widht), (WIN_HEIGHT / map.height));
 			y++;
 		}
 		i++;
