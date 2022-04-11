@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/11 13:45:51 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/11 18:16:34 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,11 @@
 # ifndef WIN_HEIGHT
 #  define WIN_HEIGHT 512
 # endif
-// TODO integrer tile_size dans
-
-# define TILE_SIZE	32
 
 # define FOV_ANGLE (60 * M_PI / 180)
 # define NUM_RAYS WINDOW_WIDTH
+
+# define BLACK_PIX 0x000000
 
 typedef struct	s_img	t_img;
 
@@ -76,6 +75,15 @@ typedef struct s_map
 	int		player_pos_x;
 	int		player_pos_y;
 }	t_map;
+
+typedef struct	s_minimap
+{
+	int	tile_x;
+	int	tile_y;
+	int	tile_width;
+	int	tile_height;
+	int	tile_color;
+}	t_minimap;
 
 typedef struct s_data	t_data;
 
@@ -116,7 +124,7 @@ int		main(int argc, char **argv);
 void	launch_game(t_data *data);
 int		render(t_data *data);
 void	render_map(t_map map, t_data *data);
-int		render_tile(t_img *img, int tile_y, int tile_x, int tile_color);
+int		render_tile(t_img *img, t_minimap mini);
 void	render_background(t_img *img, int color);
 void	img_pix_put(t_img *img, int x, int y, int color);
 int		parsing(t_data *data, char const *const filename);

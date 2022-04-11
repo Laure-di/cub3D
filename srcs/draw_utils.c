@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:58:04 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/11 14:05:53 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/11 18:16:36 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ void	render_background(t_img *img, int color)
 	}
 }
 
-int	render_tile(t_img *img, int tile_y, int tile_x, int tile_color)
+int	render_tile(t_img *img, t_minimap mini)
 {
 	int	i;
 	int	j;
 
-	i = tile_y;
-	while (i < tile_y + TILE_SIZE)
+	i = mini.tile_y;
+	while (i < mini.tile_y + mini.tile_height)
 	{
-		j = tile_x;
-		while (j < tile_x + TILE_SIZE)
-			img_pix_put(img, j++, i, tile_color);
+		j = mini.tile_x;
+		while (j < mini.tile_x + mini.tile_width)
+			img_pix_put(img, j++, i, mini.tile_color);
 		i++;
 	}
 	return (0);
