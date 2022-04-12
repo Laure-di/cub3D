@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/11 18:16:34 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/12 22:21:41 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,34 @@
 
 # define FOV_ANGLE (60 * M_PI / 180)
 # define NUM_RAYS WINDOW_WIDTH
+# define MINI_SCALE .3
 
 # define BLACK_PIX 0x000000
+# define WHITE 0xffffff
+# define GOLD 0xffd700
 
 typedef struct	s_img	t_img;
+typedef struct s_texture	t_texture;
+typedef struct s_map	t_map;
+typedef struct s_minimap t_minimap;
+typedef struct s_data	t_data;
+typedef struct s_position	t_position;
+typedef struct s_player	t_player;
+typedef struct s_rect	t_rect;
+
+typedef struct s_position
+{
+	float	x;
+	float	y;
+}	t_position;
+
+typedef struct	s_rect
+{
+	t_position	pos;
+	int			width;
+	int			height;
+	int			color;
+}	t_rect;
 
 typedef struct s_img
 {
@@ -52,9 +76,6 @@ typedef struct s_img
 	int			endian;
 }	t_img;
 
-
-typedef struct s_texture	t_texture;
-
 typedef struct s_texture
 {
 	t_img	north;
@@ -65,8 +86,6 @@ typedef struct s_texture
 	int		ceiling_color;
 }	t_texture;
 
-typedef struct s_map	t_map;
-
 typedef struct s_map
 {
 	char	**matrix;
@@ -76,36 +95,16 @@ typedef struct s_map
 	int		player_pos_y;
 }	t_map;
 
+
+
+
 typedef struct	s_minimap
 {
-	int	tile_x;
-	int	tile_y;
+	t_position	tile;
 	int	tile_width;
 	int	tile_height;
 	int	tile_color;
 }	t_minimap;
-
-typedef struct s_data	t_data;
-
-typedef struct	s_data
-{
-	// int			win_size;
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_img		img;
-	t_texture	textures;
-	t_map		map;
-} t_data;
-
-typedef struct s_position	t_position;
-
-typedef struct s_position
-{
-	float	x;
-	float	y;
-}	t_position;
-
-typedef struct s_player	t_player;
 
 typedef	struct s_player
 {
@@ -119,6 +118,17 @@ typedef	struct s_player
 	float		turnSpeed;
 }	t_player;
 
+typedef struct	s_data
+{
+	// int			win_size;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		img;
+	t_texture	textures;
+	t_map		map;
+	t_player	player;
+} t_data;
+
 
 int		main(int argc, char **argv);
 void	launch_game(t_data *data);
@@ -131,6 +141,11 @@ int		parsing(t_data *data, char const *const filename);
 int		check_map(t_map *map);
 void	clear_map(char ***map, int height);
 int		create_rgb(int r, int g, int b);
+t_player		initialize_player(t_map map);
+int	render_scale_rect(t_img *img, t_rect rect, int color);
+void	render_player(t_player player, t_data *data);
+t_rect	create_rect(int x, int y, int width, int height);
+int		is_player(char c);
 
 /****** TO DELETE ********/
 void	print_data(t_data data);
