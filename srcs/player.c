@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:27:27 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/25 13:45:29 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/25 13:58:20 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ t_player		initialize_player(t_map map)
 
 	player_orientation = __find_orientation(map.matrix);
 	player.initial_position = __find_position(map.matrix, player_orientation);
-	player.width = 30;
-	player.height = 30;
+	player.width = 5;
+	player.height = 5;
 	player.turnDirection = 0;
 	player.walkDirection = 0;
 	player.rotationAngle = M_PI_2;

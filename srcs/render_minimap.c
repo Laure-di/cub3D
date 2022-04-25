@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_map.c                                       :+:      :+:    :+:   */
+/*   render_minimap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:37:17 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/25 13:45:19 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/25 14:06:53 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	render_miniplayer(t_player player, t_data *data)
 	x = player.initial_position.x * (WIN_WIDTH / data->map.widht) + ((WIN_WIDTH / data->map.widht) / 2);
 	y = player.initial_position.y * (WIN_HEIGHT / data->map.height) + ((WIN_HEIGHT / data->map.height) / 2);
 	rect = create_scale_rect(x, y, player.width, player.height);
-	render_rect(&data->img, rect, GOLD);
+	render_rect(&data->img, rect, RED);
 }
 
 void	render_minimap(t_map map, t_data *data)

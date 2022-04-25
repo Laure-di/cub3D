@@ -6,7 +6,8 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/25 13:45:52 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/25 14:05:08 by lauremass        ###   ########.fr       */
+
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +42,7 @@
 # define BLACK_PIX 0x000000
 # define WHITE 0xffffff
 # define GOLD 0xffd700
+# define RED 0xff0000
 
 typedef struct	s_img	t_img;
 typedef struct s_texture	t_texture;
