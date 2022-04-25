@@ -30,7 +30,7 @@ SRCS	= cub3D.c			\
 		  pixel.c			\
 		  player.c			\
 		  randian_degree.c	\
-		  render_map.c		\
+		  render_minimap.c		\
 		  set_color.c		\
 		  set_texture.c		\
 		  setup_game.c		\

@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/25 13:39:01 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/25 13:45:52 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,9 +142,9 @@ int				check_map(t_map *map);
 void			clear_map(char ***map, int height);
 int				create_rgb(int r, int g, int b);
 t_player		initialize_player(t_map map);
-int				render_scale_rect(t_img *img, t_rect rect, int color);
+int				render_rect(t_img *img, t_rect rect, int color);
 void			render_miniplayer(t_player player, t_data *data);
-t_rect			create_rect(int x, int y, int width, int height);
+t_rect			create_scale_rect(int x, int y, int width, int height);
 int				is_player(char c);
 
 /****** TO DELETE ********/

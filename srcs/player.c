@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:27:27 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/25 13:38:46 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/25 13:45:29 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,4 @@ int		is_player(char c)
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (1);
 	return (0);
-}
-
-void	render_miniplayer(t_player player, t_data *data)
-{
-	int	x;
-	int	y;
-	t_rect	rect;
-
-	x = player.initial_position.x * (WIN_WIDTH / data->map.widht) + ((WIN_WIDTH / data->map.widht) / 2);
-	y = player.initial_position.y * (WIN_HEIGHT / data->map.height) + ((WIN_HEIGHT / data->map.height) / 2);
-	rect = create_rect(x, y, player.width, player.height);
-	render_scale_rect(&data->img, rect, GOLD);
 }

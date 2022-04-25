@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:58:04 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/22 17:59:15 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/25 13:48:31 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	render_background(t_img *img, int color)
 	}
 }
 
-int	render_scale_rect(t_img *img, t_rect rect, int color)
+int	render_rect(t_img *img, t_rect rect, int color)
 {
 	int	i;
 	int	j;
