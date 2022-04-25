@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/12 22:21:41 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/25 13:39:01 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 # define FOV_ANGLE (60 * M_PI / 180)
 # define NUM_RAYS WINDOW_WIDTH
-# define MINI_SCALE .3
+# define MINI_SCALE 1
 
 # define BLACK_PIX 0x000000
 # define WHITE 0xffffff
@@ -130,22 +130,22 @@ typedef struct	s_data
 } t_data;
 
 
-int		main(int argc, char **argv);
-void	launch_game(t_data *data);
-int		render(t_data *data);
-void	render_map(t_map map, t_data *data);
-int		render_tile(t_img *img, t_minimap mini);
-void	render_background(t_img *img, int color);
-void	img_pix_put(t_img *img, int x, int y, int color);
-int		parsing(t_data *data, char const *const filename);
-int		check_map(t_map *map);
-void	clear_map(char ***map, int height);
-int		create_rgb(int r, int g, int b);
+int				main(int argc, char **argv);
+void			launch_game(t_data *data);
+int				render(t_data *data);
+void			render_minimap(t_map map, t_data *data);
+int				render_tile(t_img *img, t_minimap mini);
+void			render_background(t_img *img, int color);
+void			img_pix_put(t_img *img, int x, int y, int color);
+int				parsing(t_data *data, char const *const filename);
+int				check_map(t_map *map);
+void			clear_map(char ***map, int height);
+int				create_rgb(int r, int g, int b);
 t_player		initialize_player(t_map map);
-int	render_scale_rect(t_img *img, t_rect rect, int color);
-void	render_player(t_player player, t_data *data);
-t_rect	create_rect(int x, int y, int width, int height);
-int		is_player(char c);
+int				render_scale_rect(t_img *img, t_rect rect, int color);
+void			render_miniplayer(t_player player, t_data *data);
+t_rect			create_rect(int x, int y, int width, int height);
+int				is_player(char c);
 
 /****** TO DELETE ********/
 void	print_data(t_data data);
