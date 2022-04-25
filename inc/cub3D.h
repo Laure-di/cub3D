@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/25 14:05:08 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/25 20:12:37 by lauremass        ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -97,9 +97,6 @@ typedef struct s_map
 	int		player_pos_y;
 }	t_map;
 
-
-
-
 typedef struct	s_minimap
 {
 	t_position	tile;
@@ -130,7 +127,6 @@ typedef struct	s_data
 	t_map		map;
 	t_player	player;
 } t_data;
-
 
 int				main(int argc, char **argv);
 void			launch_game(t_data *data);
