@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 20:12:58 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/25 20:45:10 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/25 21:04:50 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 # include "cub3D.h"
 
-# define FRONT
-# define BACK
-# define LEFT
-# define RIGHT
-# define RO_RIGHT
-# define RO_LEFT
+# define UP XK_w
+# define DOWN XK_s
+# define LEFT XK_a
+# define RIGHT XK_d
+# define RO_RIGHT XK_Left
+# define RO_LEFT XK_Right
 
 typedef struct s_movement
 {
