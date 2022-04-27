@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/27 15:09:17 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/27 16:34:25 by lauremass        ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -151,7 +151,7 @@ t_rect			create_scale_rect(int x, int y, int width, int height);
 int				is_player(char c);
 void			mng_event_input(t_data *data);
 int				handle_keypress(int keysim, t_data *data);
-void			move_player_position(t_player *player);
+void			move_player_position(t_player *player, t_data *data);
 
 /****** TO DELETE ********/
 void	print_data(t_data data);
