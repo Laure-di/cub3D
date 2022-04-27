@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:56:22 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/27 16:33:04 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/27 17:59:52 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int		hitWall(t_position new, t_map map)
 	int floorx;
 	int	floory;
 
-	floorx = floor(new.x);
-	floory = floor(new.y);
+	floorx = floorf(new.x);
+	floory = floorf(new.y);
 	if (floorx < 0 || map.widht <= floorx || floory < 0 || map.height <= floory)
 		return (1);
 	return (map.matrix[floory][floorx] != '0');
