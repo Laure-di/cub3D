@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/27 02:50:10 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/27 15:09:17 by lauremass        ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -40,6 +40,7 @@
 # define NUM_RAYS WINDOW_WIDTH
 # define MINI_SCALE 1
 # define DELTA_TIME 0.003
+# define ROTATION_SPEED	0.3
 
 # define BLACK_PIX 0x000000
 # define WHITE 0xffffff
