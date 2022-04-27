@@ -6,13 +6,13 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:27:27 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/25 13:58:20 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/27 02:09:04 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-static t_position	__find_position(char **matrix, char player_orientation)
+static t_position	__find_position(char **matrix, char player_orientation, t_map map)
 {
 	t_position	position;
 	int			y;
@@ -21,10 +21,10 @@ static t_position	__find_position(char **matrix, char player_orientation)
 	y = 0;
 	position.y = 0;
 	position.x = 0;
-	while (matrix[y])
+	while (y < map.height)
 	{
 		x = 0;
-		while (matrix[y][x])
+		while (x < map.widht)
 		{
 			if (matrix[y][x] == player_orientation)
 			{
@@ -39,17 +39,17 @@ static t_position	__find_position(char **matrix, char player_orientation)
 	return (position);
 }
 
-static char			__find_orientation(char **matrix)
+static char			__find_orientation(char **matrix, t_map map)
 {
 	int		y;
 	int		i;
 	char	orientation;
 
 	y = 0;
-	while (matrix[y])
+	while (y < map.height)
 	{
 		i = 0;
-		while (matrix[y][i])
+		while (i < map.widht)
 		{
 			orientation = matrix[y][i];
 			if (orientation != '0' && orientation != '1' && orientation != 32)
@@ -66,14 +66,14 @@ t_player		initialize_player(t_map map)
 	t_player	player;
 	char		player_orientation;
 
-	player_orientation = __find_orientation(map.matrix);
-	player.initial_position = __find_position(map.matrix, player_orientation);
+	player_orientation = __find_orientation(map.matrix, map);
+	player.initial_position = __find_position(map.matrix, player_orientation, map);
 	player.width = 5;
 	player.height = 5;
 	player.turnDirection = 0;
 	player.walkDirection = 0;
 	player.rotationAngle = M_PI_2;
-	player.walkSpeed = 100;
+	player.walkSpeed = 10;
 	player.turnSpeed = 45 * (M_PI / 180);
 	return (player);
 }

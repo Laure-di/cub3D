@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/25 20:12:37 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/27 02:50:10 by lauremass        ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -26,6 +26,7 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include "../libft/libft.h"
+# include "lookup_table.h"
 
 # ifndef WIN_WIDTH
 #  define WIN_WIDTH 1024
@@ -38,6 +39,7 @@
 # define FOV_ANGLE (60 * M_PI / 180)
 # define NUM_RAYS WINDOW_WIDTH
 # define MINI_SCALE 1
+# define DELTA_TIME 0.003
 
 # define BLACK_PIX 0x000000
 # define WHITE 0xffffff
@@ -115,6 +117,7 @@ typedef	struct s_player
 	float		rotationAngle;
 	float		walkSpeed;
 	float		turnSpeed;
+	float		direction;
 }	t_player;
 
 typedef struct	s_data
@@ -129,6 +132,7 @@ typedef struct	s_data
 } t_data;
 
 int				main(int argc, char **argv);
+void			clear_data(t_data *data);
 void			launch_game(t_data *data);
 int				render(t_data *data);
 void			render_minimap(t_map map, t_data *data);
@@ -144,6 +148,9 @@ int				render_rect(t_img *img, t_rect rect, int color);
 void			render_miniplayer(t_player player, t_data *data);
 t_rect			create_scale_rect(int x, int y, int width, int height);
 int				is_player(char c);
+void			mng_event_input(t_data *data);
+int				handle_keypress(int keysim, t_data *data);
+void			move_player_position(t_player *player);
 
 /****** TO DELETE ********/
 void	print_data(t_data data);

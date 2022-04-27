@@ -37,6 +37,8 @@ SRCS	= cub3D.c			\
 		  check_map.c		\
 		  print_debug.c		\
 		  colors.c			\
+		  events.c			\
+		  move.c
 
 ######################################
 #            OBJECT FILES            #
