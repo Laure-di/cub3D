@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:52:42 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/27 16:46:16 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/29 11:00:57 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int			handle_keypress(int keysim, t_data *data)
 	if (keysim == LEFT || keysim == RIGHT)
 		player->direction = M_PI / 2;
 	if (keysim == RO_RIGHT)
-		player->turnDirection = 1;
+		player->turnDirection = -1; // FIX inversé
 	if (keysim == RO_LEFT)
-		player->turnDirection = -1;
+		player->turnDirection = 1; // FIX inversé
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_minimap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:37:17 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/27 18:01:35 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/29 11:11:06 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,44 @@ t_rect	create_scale_rect(int x, int y, int width, int height)
 	return (rect);
 }
 
+int	abs_val(int n)
+{
+	if (n < 0)
+		n *= -1;
+	return (n);
+}
+
+void	draw_line(t_img *img, int x0, int y0, int x1, int y1)
+{
+	int	dx = abs_val(x1 - x0);
+	int	sx = x0 < x1 ? 1 : -1;
+	int	dy = -abs_val(y1 - y0);
+	int	sy = y0 < y1 ? 1 : -1;
+	int	error = dx + dy;
+
+	while (1)
+	{
+		img_pix_put(img, x0, y0, RED);
+		if (x0 == x1 && y0 == y1)
+			break;
+		int	e2 = 2 * error;
+		if (e2 >= dy)
+		{
+			if (x0 == x1)
+				break;
+			error = error + dy;
+			x0 = x0 + sx;
+		}
+		if (e2 <= dx)
+		{
+			if (y0 == y1)
+				break;
+			error = error + dx;
+			y0 = y0 + sy;
+		}
+	}
+}
+
 void	render_miniplayer(t_player player, t_data *data)
 {
 	int	x;
@@ -33,6 +71,10 @@ void	render_miniplayer(t_player player, t_data *data)
 	y = player.initial_position.y * (WIN_HEIGHT / data->map.height);
 	rect = create_scale_rect(x, y, player.width, player.height);
 	render_rect(&data->img, rect, RED);
+	// TODO render FOV
+	draw_line(&data->img, x, y,
+				x - (cos(player.rotationAngle) * 20),
+				y - (sin(player.rotationAngle) * 20));
 }
 
 void	render_minimap(t_map map, t_data *data)
