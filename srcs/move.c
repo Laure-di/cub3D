@@ -6,11 +6,19 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:56:22 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/29 11:30:34 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/29 18:27:43 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
+
+float	normalizeAngle(float angle)
+{
+	angle = remainder(angle, (M_PI * 2));
+	if (angle < 0)
+		angle += M_PI * 2;
+	return (angle);
+}
 
 int		hitWall(t_position new, t_map map) // FIX rentre un peu dans certains murs + un mur invisible en bas du départ
 {
@@ -38,4 +46,5 @@ void	move_player_position(t_player *player, t_data *data)
 		player->initial_position.x = new.x;
 		player->initial_position.y = new.y;
 	}
+	player->rotationAngle = normalizeAngle(player->rotationAngle);
 }

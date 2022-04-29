@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:52:42 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/29 11:00:57 by majacque         ###   ########.fr       */
+/*   Updated: 2022/04/29 18:26:32 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int			handle_keypress(int keysim, t_data *data)
 	player = &data->player;
 	if (keysim == ESCAPE)
 		mlx_loop_end(data->mlx_ptr);
-	if (keysim == UP || keysim == RIGHT)
+	if (keysim == UP || keysim == RIGHT || keysim == AR_UP)
 		player->walkDirection = -1;
-	if (keysim == DOWN || keysim == LEFT)
+	if (keysim == DOWN || keysim == LEFT || keysim == AR_DOWN)
 		player->walkDirection = 1;
 	if (keysim == LEFT || keysim == RIGHT)
 		player->direction = M_PI / 2;
@@ -37,7 +37,7 @@ int		handle_release(int keysim, t_data *data)
 	t_player *player;
 
 	player = &data->player;
-	if (keysim == UP || keysim == DOWN || keysim == RIGHT || keysim == LEFT)
+	if (keysim == UP || keysim == DOWN || keysim == RIGHT || keysim == LEFT || keysim == AR_UP || keysim == AR_DOWN)
 		player->walkDirection = 0;
 	if (keysim == LEFT || keysim == RIGHT)
 		player->direction = 0;

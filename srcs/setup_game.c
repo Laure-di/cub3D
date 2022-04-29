@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:42:10 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/27 15:32:58 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/29 15:39:25 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	render(t_data *data)
 	render_minimap(data->map, data);
 	render_miniplayer(data->player, data);
 	/*********** END *********************/
+	//TO DO render_rays();
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);
 	return (1);
 }

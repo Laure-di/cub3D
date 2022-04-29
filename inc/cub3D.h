@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/29 15:36:58 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/29 18:24:28 by lauremass        ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -37,7 +37,7 @@
 # endif
 
 # define FOV_ANGLE (60 * M_PI / 180)
-# define NUM_RAYS WINDOW_WIDTH
+# define NUM_RAYS WIN_WIDTH
 # define MINI_SCALE 1
 # define DELTA_TIME 0.003
 # define ROTATION_SPEED	0.3
@@ -132,7 +132,7 @@ typedef struct	s_data
 	t_player	player;
 } t_data;
 
-typdef struct s_ray
+typedef struct s_ray
 {
 	float	rayAngle;
 	float	wallHitX;
@@ -144,8 +144,6 @@ typdef struct s_ray
 	int		isFacingLeft;
 	int		isFacingRight;
 	int		wallHitContent;
-
-	int		wasHitVertical;
 } t_ray[NUM_RAYS];
 
 int				main(int argc, char **argv);
