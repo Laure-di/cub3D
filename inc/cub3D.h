@@ -37,7 +37,7 @@
 # endif
 
 # define FOV_ANGLE (60 * M_PI / 180)
-# define NUM_RAYS WINDOW_WIDTH
+# define NUM_RAYS WIN_WIDTH
 # define MINI_SCALE 1
 # define DELTA_TIME 0.003
 # define ROTATION_SPEED	0.3

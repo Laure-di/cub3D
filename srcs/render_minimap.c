@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:37:17 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/29 11:11:06 by majacque         ###   ########.fr       */
+/*   Updated: 2022/04/29 11:32:40 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,24 @@ void	draw_line(t_img *img, int x0, int y0, int x1, int y1)
 	}
 }
 
+void	draw_all_rays(t_player *player, t_img *img, int x, int y)
+{
+	float	rayAngle;
+	int		rayId;
+
+	rayAngle = player->rotationAngle - (FOV_ANGLE / 2);
+	rayId = 0;
+
+	while (rayId < NUM_RAYS)
+	{
+		draw_line(img, x, y, 
+					x - (cos(rayAngle) * 20),
+					y - (sin(rayAngle) * 20));
+		rayAngle += FOV_ANGLE / NUM_RAYS;
+		rayId++;
+	}
+}
+
 void	render_miniplayer(t_player player, t_data *data)
 {
 	int	x;
@@ -72,9 +90,7 @@ void	render_miniplayer(t_player player, t_data *data)
 	rect = create_scale_rect(x, y, player.width, player.height);
 	render_rect(&data->img, rect, RED);
 	// TODO render FOV
-	draw_line(&data->img, x, y,
-				x - (cos(player.rotationAngle) * 20),
-				y - (sin(player.rotationAngle) * 20));
+	draw_all_rays(&player, &data->img, x, y);
 }
 
 void	render_minimap(t_map map, t_data *data)
