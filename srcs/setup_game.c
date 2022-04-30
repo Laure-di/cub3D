@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:42:10 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/29 15:39:25 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/30 13:06:42 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int	render(t_data *data)
 	if (data->win_ptr == NULL)
 		return (1);
 	move_player_position(&data->player, data);
-	render_background(&data->img, GOLD);
+	render_background(&data->img, data->textures.floor_color, data->textures.ceiling_color);
+	render_map(data->map, data);
+	render_player(data->player, data);
 	/*********** BONUS PART **************/
 	render_minimap(data->map, data);
 	render_miniplayer(data->player, data);

@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/29 18:24:28 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/30 13:06:40 by lauremass        ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -38,7 +38,7 @@
 
 # define FOV_ANGLE (60 * M_PI / 180)
 # define NUM_RAYS WIN_WIDTH
-# define MINI_SCALE 1
+# define MINI_SCALE 0.3
 # define DELTA_TIME 0.003
 # define ROTATION_SPEED	0.3
 
@@ -152,7 +152,9 @@ void			launch_game(t_data *data);
 int				render(t_data *data);
 void			render_minimap(t_map map, t_data *data);
 int				render_tile(t_img *img, t_minimap mini);
-void			render_background(t_img *img, int color);
+void			render_background(t_img *img, int floorcolor, int ceilingColor);
+void			draw_line(t_img *img, int x0, int y0, int x1, int y1);
+int				abs_val(int n);
 void			img_pix_put(t_img *img, int x, int y, int color);
 int				parsing(t_data *data, char const *const filename);
 int				check_map(t_map *map);
@@ -162,6 +164,8 @@ t_player		initialize_player(t_map map);
 int				render_rect(t_img *img, t_rect rect, int color);
 void			render_miniplayer(t_player player, t_data *data);
 t_rect			create_scale_rect(int x, int y, int width, int height);
+void			render_map(t_map map, t_data *data);
+void			render_player(t_player player, t_data *data);
 int				is_player(char c);
 void			mng_event_input(t_data *data);
 int				handle_keypress(int keysim, t_data *data);
