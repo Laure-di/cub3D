@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:56:22 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/02 15:39:29 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/02 16:31:05 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ float	normalizeAngle(float angle)
 {
 	angle = remainder(angle, (M_PI * 2));
 	if (angle < 0)
-		angle += M_PI * 2;
+		angle = M_PI * 2 + angle;
 	return (angle);
 }
 
@@ -46,5 +46,5 @@ void	move_player_position(t_player *player, t_data *data)
 		player->initial_position.x = new.x;
 		player->initial_position.y = new.y;
 	}
-	player->rotationAngle = normalizeAngle(player->rotationAngle);
+	//player->rotationAngle = normalizeAngle(player->rotationAngle);
 }

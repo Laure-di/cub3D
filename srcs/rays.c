@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rayscasting.c                                      :+:      :+:    :+:   */
+/*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:39:38 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/01 15:43:25 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/02 16:32:23 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-t_ray	create_ray(float rayAngle)
+/*t_ray	create_ray(float rayAngle)
 {
 	t_ray	ray;
 
@@ -144,5 +144,5 @@ void	castAllRays(t_player *player, t_data *data)
 		stripId++;
 	}
 
-}
+}*/
 

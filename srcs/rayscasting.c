@@ -6,7 +6,7 @@
 /*   By: lmasson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:08:47 by lmasson           #+#    #+#             */
-/*   Updated: 2022/05/02 15:49:06 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/02 17:36:14 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_ray	create_ray(float rayAngle)
 {
 	t_ray	ray;
 
+	rayAngle = normalizeAngle(rayAngle);
 	 ray.isFacingDown = 0;
 	 ray.isFacingRight = 0;
 	if (0 < rayAngle && rayAngle < M_PI)
@@ -24,7 +25,7 @@ t_ray	create_ray(float rayAngle)
 		ray.isFacingRight = 1;
 	ray.isFacingUp = !ray.isFacingDown;
 	ray.isFacingLeft = !ray.isFacingRight;
-	ray.angle = normalizeAngle(rayAngle);
+	ray.angle = rayAngle;
 	ray.wallHit.x = 0;
 	ray.wallHit.y = 0;
 	ray.distance = 0;
@@ -41,8 +42,8 @@ void	findNextInterceptVrtc(t_data *data, t_ray *ray, t_position intercept, t_pos
 	next.y = intercept.y;
 	while (0 <= next.x && next.x <= WIN_WIDTH && 0 <= next.y && next.y <= WIN_HEIGHT)
 	{
-		if (ray->isFacingRight)
-			next.x  += 1;
+		if (ray->isFacingLeft)
+			next.x  -= 1;
 		ray->wallHitContent = hitWall(next, data->map);
 		if (ray->wallHitContent)
 		{
@@ -65,9 +66,9 @@ void	castVerticalRay(t_data *data, t_ray *ray)
 	t_position intercept;
 	t_position	step;
 
-	intercept.x = floor(data->player.initial_position.x);
+	intercept.x = floor(data->player.initial_position.x / TILE_SIZE) * TILE_SIZE;
 	if (ray->isFacingRight)
-		intercept.x += 1;
+		intercept.x += TILE_SIZE;
 	intercept.y = data->player.initial_position.y + (intercept.x - data->player.initial_position.x) * tan(ray->angle);
 	step.x = 1;
 	if (ray->isFacingLeft)
@@ -111,9 +112,9 @@ void	castHorizontalRay(t_data *data, t_ray *ray)
 	t_position intercept;
 	t_position	step;
 
-	intercept.y = floor(data->player.initial_position.y);
+	intercept.y = floor(data->player.initial_position.y / TILE_SIZE) + TILE_SIZE;
 	if (ray->isFacingDown)
-		intercept.y += 1;
+		intercept.y += TILE_SIZE;
 	intercept.x = data->player.initial_position.x + (intercept.y - data->player.initial_position.y) / tan(ray->angle);
 	step.y = 1;
 	if (ray->isFacingUp)
@@ -135,7 +136,7 @@ t_ray	find_intersection(t_data *data, float rayAngle)
 	vertical = create_ray(rayAngle);
 	castHorizontalRay(data, &horizontal);
 	castVerticalRay(data, &vertical);
-	if (horizontal.distance < vertical.distance)
+	if (horizontal.distance < vertical.distance && horizontal.distance != 0)
 		return (horizontal);
 	return (vertical);
 }

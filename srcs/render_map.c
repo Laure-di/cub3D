@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:37:17 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/02 13:21:53 by majacque         ###   ########.fr       */
+/*   Updated: 2022/05/02 16:02:18 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_rect	create_rect(int x, int y, int width, int height)
 	rect.pos.x = x;
 	rect.pos.y = y;
 	rect.width = width;
-	rect.height	= height;
+	rect.height = height;
 	return (rect);
 }
 
