@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:42:10 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/02 11:42:03 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/02 13:21:57 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	render(t_data *data)
 	move_player_position(&data->player, data);
 	render_background(&data->img, data->textures.floor_color, data->textures.ceiling_color);
 	render_map(data->map, data);
-	castAllRays(&data->player, data);
-	//render_rays(&data->img, data->rays, data->player);
 	render_player(data->player, data);
+	castAllRays(&data->player, data);
+	render_rays(data, data->rays, data->player);
 	/*********** BONUS PART **************/
-	render_minimap(data->map, data);
-	render_miniplayer(data->player, data);
+	/* render_minimap(data->map, data);
+	render_miniplayer(data->player, data); */
 	/*********** END *********************/
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);
 	return (1);

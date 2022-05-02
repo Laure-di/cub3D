@@ -172,7 +172,7 @@ int				is_player(char c);
 void			mng_event_input(t_data *data);
 int				handle_keypress(int keysim, t_data *data);
 void			move_player_position(t_player *player, t_data *data);
-void			render_rays(t_img *img, t_ray *rays, t_player player);
+void			render_rays(t_data *data, t_ray *rays, t_player player);
 void			castAllRays(t_player *player, t_data *data);
 float			normalizeAngle(float angle);
 void			move_player_position(t_player *player, t_data *data);

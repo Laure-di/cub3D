@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:58:04 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/30 17:05:01 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/02 13:21:48 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-int	abs_val(int n)
+int abs_val(int n)
 {
 	if (n < 0)
 		n *= -1;
@@ -50,10 +50,10 @@ void	draw_line(t_img *img, int x0, int y0, int x1, int y1)
 	}
 }
 
-void	render_background(t_img *img, int floorColor, int ceilColor)
+void render_background(t_img *img, int floorColor, int ceilColor)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
 	while (i < WIN_HEIGHT / 2)
@@ -72,10 +72,10 @@ void	render_background(t_img *img, int floorColor, int ceilColor)
 	}
 }
 
-int	render_rect(t_img *img, t_rect rect, int color)
+int render_rect(t_img *img, t_rect rect, int color)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = rect.pos.y;
 	while (i < rect.pos.y + rect.height)
@@ -87,4 +87,3 @@ int	render_rect(t_img *img, t_rect rect, int color)
 	}
 	return (0);
 }
-

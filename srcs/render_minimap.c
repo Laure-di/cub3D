@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:37:17 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/30 16:56:51 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/02 12:28:11 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@ void	render_miniplayer(t_player player, t_data *data)
 	y = player.initial_position.y * (WIN_HEIGHT / data->map.height);
 	rect = create_scale_rect(x, y, player.width, player.height);
 	render_rect(&data->img, rect, RED);
-	// TODO render FOV
-	draw_line(&data->img, x, y,
+	/* draw_line(&data->img, x, y,
 				x - (cos(player.rotationAngle) * 20),
-				y - (sin(player.rotationAngle) * 20));
+				y - (sin(player.rotationAngle) * 20)); */
 }
 
 void	render_minimap(t_map map, t_data *data)
