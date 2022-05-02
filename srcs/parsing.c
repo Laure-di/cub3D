@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:55:50 by majacque          #+#    #+#             */
-/*   Updated: 2022/04/27 01:33:35 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/30 17:29:58 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ int	parsing(t_data *data, char const *const filename)
 	if (check_map(&data->map))
 		return (1);
 	data->player = initialize_player(data->map);
+	data->rays = malloc(sizeof(t_ray) * NUM_RAYS);
 	return (0);
 }

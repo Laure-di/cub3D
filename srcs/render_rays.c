@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randian_degree.c                                   :+:      :+:    :+:   */
+/*   render_rays.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmasson <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 15:15:21 by lmasson           #+#    #+#             */
-/*   Updated: 2022/04/03 14:29:14 by lauremass        ###   ########.fr       */
+/*   Created: 2022/04/30 16:54:03 by lauremass         #+#    #+#             */
+/*   Updated: 2022/05/02 11:40:24 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-double	deg2rad(double degrees)
+void	render_rays(t_img *img, t_ray *rays, t_player player)
 {
-	return (degrees * (M_PI / 180.0));
-}
+	int i;
 
-double	rad2deg(double radians)
-{
-	return (radians * (180 / M_PI));
+	i = 0;
+	while (i < NUM_RAYS)
+	{
+		draw_line(img,player.initial_position.x, player.initial_position.y, rays[i].wallHit.x,rays[i].wallHit.y);
+		i++;
+	}
 }
-

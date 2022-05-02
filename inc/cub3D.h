@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/30 13:06:40 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/04/30 17:29:10 by lauremass        ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -121,22 +121,10 @@ typedef	struct s_player
 	float		direction;
 }	t_player;
 
-typedef struct	s_data
-{
-	// int			win_size;
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_img		img;
-	t_texture	textures;
-	t_map		map;
-	t_player	player;
-} t_data;
-
 typedef struct s_ray
 {
-	float	rayAngle;
-	float	wallHitX;
-	float	wallHitY;
+	float	angle;
+	t_position	wallHit;
 	float	distance;
 	int		wasHitVertical;
 	int		isFacingUp;
@@ -144,7 +132,20 @@ typedef struct s_ray
 	int		isFacingLeft;
 	int		isFacingRight;
 	int		wallHitContent;
-} t_ray[NUM_RAYS];
+} t_ray;
+
+typedef struct	s_data
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		img;
+	t_texture	textures;
+	t_map		map;
+	t_player	player;
+	t_ray		*rays;
+} t_data;
+
+
 
 int				main(int argc, char **argv);
 void			clear_data(t_data *data);
@@ -155,6 +156,7 @@ int				render_tile(t_img *img, t_minimap mini);
 void			render_background(t_img *img, int floorcolor, int ceilingColor);
 void			draw_line(t_img *img, int x0, int y0, int x1, int y1);
 int				abs_val(int n);
+float			distanceBetweenPoints(t_position start, t_position end);
 void			img_pix_put(t_img *img, int x, int y, int color);
 int				parsing(t_data *data, char const *const filename);
 int				check_map(t_map *map);
@@ -170,7 +172,11 @@ int				is_player(char c);
 void			mng_event_input(t_data *data);
 int				handle_keypress(int keysim, t_data *data);
 void			move_player_position(t_player *player, t_data *data);
-
+void			render_rays(t_img *img, t_ray *rays, t_player player);
+void			castAllRays(t_player *player, t_data *data);
+float			normalizeAngle(float angle);
+void			move_player_position(t_player *player, t_data *data);
+int				hitWall(t_position new, t_map map);
 /****** TO DELETE ********/
 void	print_data(t_data data);
 
