@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/30 17:29:10 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/02 13:25:17 by lmasson          ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -177,6 +177,7 @@ void			castAllRays(t_player *player, t_data *data);
 float			normalizeAngle(float angle);
 void			move_player_position(t_player *player, t_data *data);
 int				hitWall(t_position new, t_map map);
+t_ray			find_intersection(t_data *data, float rayAngle);
 /****** TO DELETE ********/
 void	print_data(t_data data);
 
