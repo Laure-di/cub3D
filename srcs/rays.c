@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rayscasting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmasson <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 13:08:47 by lmasson           #+#    #+#             */
-/*   Updated: 2022/05/02 13:30:57 by lmasson          ###   ########.fr       */
+/*   Created: 2022/04/29 15:39:38 by lauremass         #+#    #+#             */
+/*   Updated: 2022/05/01 15:43:25 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,14 @@ void	findNextInterceptVrtc(t_data *data, t_ray *ray, t_position intercept, t_pos
 		ray->wallHitContent = hitWall(next, data->map);
 		if (ray->wallHitContent)
 		{
+			if (distanceBetweenPoints(data->player.initial_position, next) < ray->distance && ray->distance != 0)
+			{
 				ray->wallHit.x = next.x;
 				ray->wallHit.y = next.y;
 				ray->wasHitVertical = 1;
 				ray->distance = distanceBetweenPoints(data->player.initial_position, ray->wallHit);
-				break ;
+			}
+			break ;
 		}
 		else
 		{
@@ -125,21 +128,6 @@ void	castHorizontalRay(t_data *data, t_ray *ray)
 
 }
 
-
-t_ray	find_intersection(t_data *data, float rayAngle)
-{
-	t_ray	horizontal;
-	t_ray	vertical;
-
-	horizontal = create_ray(rayAngle);
-	vertical = create_ray(rayAngle);
-	castHorizontalRay(data, &horizontal);
-	castVerticalRay(data, &vertical);
-	if (horizontal.distance < vertical.distance)
-		return (horizontal);
-	return (vertical);
-}
-
 void	castAllRays(t_player *player, t_data *data)
 {
 	float	rayAngle;
@@ -149,9 +137,9 @@ void	castAllRays(t_player *player, t_data *data)
 	stripId = 0;
 	while (stripId < NUM_RAYS)
 	{
-		data->rays[stripId] = find_intersection(data, rayAngle);
-		//castHorizontalRay(data, &data->rays[stripId]);
-		//castVerticalRay(data, &data->rays[stripId]);
+		data->rays[stripId] = create_ray(rayAngle);
+		castHorizontalRay(data, &data->rays[stripId]);
+		castVerticalRay(data, &data->rays[stripId]);
 		rayAngle += FOV_ANGLE / NUM_RAYS;
 		stripId++;
 	}
