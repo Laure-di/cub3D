@@ -6,7 +6,7 @@
 /*   By: lmasson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:15:21 by lmasson           #+#    #+#             */
-/*   Updated: 2022/04/30 17:10:01 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/02 15:14:19 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 float	distanceBetweenPoints(t_position start, t_position end)
 {
-	return (sqrt((end.x - start.x) * (end.x * start.x) + (end.y - start.y) * (end.y - start.y)));
+	return (sqrt((end.x - start.x) * (end.x - start.x) + (end.y - start.y) * (end.y - start.y)));
 }
 
 double	deg2rad(double degrees)

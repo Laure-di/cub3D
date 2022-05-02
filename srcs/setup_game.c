@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:42:10 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/02 13:37:25 by majacque         ###   ########.fr       */
+/*   Updated: 2022/05/02 15:37:40 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	render(t_data *data)
 	move_player_position(&data->player, data);
 	render_background(&data->img, data->textures.floor_color, data->textures.ceiling_color);
 	render_map(data->map, data);
-	castAllRays(&data->player, data);
-	render_rays(&data->img, data->rays, data->player);
 	render_player(data->player, data);
 	castAllRays(&data->player, data);
 	render_rays(data, data->rays, data->player);
