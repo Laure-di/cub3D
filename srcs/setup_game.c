@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:42:10 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/03 10:38:54 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/03 12:28:05 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	render(t_data *data)
 	move_player_position(&data->player, data);
 	render_miniplayer(data->player, data);
 	castAllRays(&data->player, data);
-	print_data(*data);
+	//print_data(*data);
 	render_rays(data, data->rays, data->player);
 	/*********** END *********************/
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);
