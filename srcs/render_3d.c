@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:28:51 by majacque          #+#    #+#             */
-/*   Updated: 2022/05/03 12:28:39 by majacque         ###   ########.fr       */
+/*   Updated: 2022/05/03 14:49:33 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	render_3d(t_data *data)
 	while (i < NUM_RAYS)
 	{
 		// perp_distance = data->rays[i].distance * cosf(data->rays[i].angle - data->player.rotationAngle);
-		project_wall_height = (TILE_SIZE / /* perp_distance */ data->rays[i].distance) * distance_proj_plane;
+		project_wall_height = (TILE_SIZE / /* perp_distance */ (data->rays[i].distance * TILE_SIZE)) * distance_proj_plane;
 		wall_strip_height = (int)project_wall_height;
 
 		wall_top_pixel = (WIN_HEIGHT / 2) - (wall_strip_height / 2);

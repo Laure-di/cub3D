@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:52:42 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/03 11:49:47 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/03 17:00:47 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int			handle_keypress(int keysim, t_data *data)
 	if (keysim == LEFT || keysim == RIGHT)
 		player->direction = M_PI / 2;
 	if (keysim == RO_RIGHT)
-		player->turnDirection = -1; // FIX inversé
+		player->turnDirection = -1;
 	if (keysim == RO_LEFT)
-		player->turnDirection = 1; // FIX inversé
+		player->turnDirection = 1;
 	return (1);
 }
 

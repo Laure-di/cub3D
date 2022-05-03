@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:27:27 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/02 19:58:59 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/03 15:05:32 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_player		initialize_player(t_map map)
 	player.walkDirection = 0;
 	player.rotationAngle = M_PI_2;
 	player.walkSpeed = 1;
-	player.turnSpeed = 45 * (M_PI / 180);
+	player.turnSpeed = 10 * (M_PI / 180);
 	player.direction = 0;
 	return (player);
 }
