@@ -38,10 +38,10 @@
 
 # define FOV_ANGLE (60 * M_PI / 180)
 # define NUM_RAYS WIN_WIDTH
-# define MINI_SCALE 1
+# define MINI_SCALE 0.2
 # define DELTA_TIME 0.03
 # define ROTATION_SPEED	0.3
-# define TILE_SIZE	30
+# define TILE_SIZE	32
 
 # define BLACK_PIX 0x000000
 # define WHITE 0xffffff
@@ -146,7 +146,7 @@ typedef struct	s_data
 	t_ray		*rays;
 } t_data;
 
-
+void	render_3d(t_data *data);
 
 int				main(int argc, char **argv);
 void			clear_data(t_data *data);
