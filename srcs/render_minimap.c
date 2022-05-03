@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:37:17 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/03 11:56:45 by majacque         ###   ########.fr       */
+/*   Updated: 2022/05/03 12:27:59 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	render_miniplayer(t_player player, t_data *data)
 	y = player.initial_position.y * TILE_SIZE * MINI_SCALE;
 	rect = create_scale_rect(x, y, player.width, player.height);
 	render_rect(&data->img, rect, RED);
-	draw_line(&data->img, x, y,
-				x - (cos(player.rotationAngle) * (20 * MINI_SCALE)),
-				y - (sin(player.rotationAngle) * (20 * MINI_SCALE)));
+	/* draw_line(&data->img, x, y,
+				x + (cos(player.rotationAngle) * (30 * MINI_SCALE)),
+				y + (sin(player.rotationAngle) * (30 * MINI_SCALE))); */
 }
 
 void	render_minimap(t_map map, t_data *data)

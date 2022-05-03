@@ -46,6 +46,7 @@
 # define BLACK_PIX 0x000000
 # define WHITE 0xffffff
 # define GOLD 0xffd700
+# define SHADE_GOLD 0xffb600
 # define RED 0xff0000
 
 typedef struct	s_img	t_img;

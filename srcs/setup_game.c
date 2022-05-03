@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:42:10 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/03 12:03:36 by majacque         ###   ########.fr       */
+/*   Updated: 2022/05/03 12:18:14 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ int	render(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
-	// render_background(&data->img, data->textures.floor_color, data->textures.ceiling_color);
+	render_background(&data->img, data->textures.floor_color, data->textures.ceiling_color);
 	//render_map(data->map, data);
 	//render_player(data->player, data);
 	castAllRays(&data->player, data);
 	//render_rays(data, data->rays, data->player);
+	render_3d(data);
 	/*********** BONUS PART **************/
 	render_minimap(data->map, data);
 	move_player_position(&data->player, data);
 	render_miniplayer(data->player, data);
 	castAllRays(&data->player, data);
-	print_data(*data);
+	// print_data(*data);
 	render_rays(data, data->rays, data->player);
 	/*********** END *********************/
-	render_3d(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);
 	return (1);
 }
