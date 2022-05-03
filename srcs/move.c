@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:56:22 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/02 20:02:46 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/03 11:17:45 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ void	move_player_position(t_player *player, t_data *data)
 		player->initial_position.x = new.x;
 		player->initial_position.y = new.y;
 	}
-	//player->rotationAngle = normalizeAngle(player->rotationAngle);
+	player->rotationAngle = normalizeAngle(player->rotationAngle);
 }

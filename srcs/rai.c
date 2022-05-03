@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rays.c                                             :+:      :+:    :+:   */
+/*   rayscasting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: lmasson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/29 15:39:38 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/02 16:32:23 by lmasson          ###   ########.fr       */
+/*   Created: 2022/05/02 13:08:47 by lmasson           #+#    #+#             */
+/*   Updated: 2022/05/03 09:29:24 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-/*t_ray	create_ray(float rayAngle)
+t_ray	create_ray(float rayAngle)
 {
 	t_ray	ray;
 
@@ -24,12 +24,12 @@
 		ray.isFacingRight = 1;
 	ray.isFacingUp = !ray.isFacingDown;
 	ray.isFacingLeft = !ray.isFacingRight;
-	ray.angle = normalizeAngle(rayAngle);
+	ray.angle = rayAngle;
 	ray.wallHit.x = 0;
 	ray.wallHit.y = 0;
 	ray.distance = 0;
 	ray.wasHitVertical = 0;
-	ray.wallHitContent = '1';
+	ray.wallHitContent = 1;
 	return (ray);
 }
 
@@ -46,14 +46,11 @@ void	findNextInterceptVrtc(t_data *data, t_ray *ray, t_position intercept, t_pos
 		ray->wallHitContent = hitWall(next, data->map);
 		if (ray->wallHitContent)
 		{
-			if (distanceBetweenPoints(data->player.initial_position, next) < ray->distance && ray->distance != 0)
-			{
 				ray->wallHit.x = next.x;
 				ray->wallHit.y = next.y;
 				ray->wasHitVertical = 1;
 				ray->distance = distanceBetweenPoints(data->player.initial_position, ray->wallHit);
-			}
-			break ;
+				break ;
 		}
 		else
 		{
@@ -68,15 +65,15 @@ void	castVerticalRay(t_data *data, t_ray *ray)
 	t_position intercept;
 	t_position	step;
 
-	intercept.x = floorf(data->player.initial_position.x);
+	intercept.x = floor(data->player.initial_position.x);
 	if (ray->isFacingRight)
 		intercept.x += 1;
-	intercept.y = data->player.initial_position.y + (intercept.x - data->player.initial_position.x) / tan(ray->angle);
+	intercept.y = data->player.initial_position.y + (intercept.x - data->player.initial_position.x) * tan(ray->angle);
 	step.x = 1;
 	if (ray->isFacingLeft)
 		step.x *= -1;
-	step.y = 1 / tan(ray->angle);
-	if ((ray->isFacingUp && 0 < step.x) || (ray->isFacingRight && step.x < 0))
+	step.y = 1 * tan(ray->angle);
+	if ((ray->isFacingUp && 0 < step.y) || (ray->isFacingRight && step.y < 0))
 		step.x *= -1;
 	findNextInterceptVrtc(data, ray, intercept, step);
 
@@ -90,7 +87,7 @@ void	findNextInterceptHrzt(t_data *data, t_ray *ray, t_position intercept, t_pos
 	next.y = intercept.y;
 	while (0 <= next.x && next.x <= WIN_WIDTH && 0 <= next.y && next.y <= WIN_HEIGHT)
 	{
-		if (ray->isFacingUp)
+		if (!ray->isFacingDown)
 			next.y -= 1;
 		ray->wallHitContent = hitWall(next, data->map);
 		if (ray->wallHitContent)
@@ -114,7 +111,7 @@ void	castHorizontalRay(t_data *data, t_ray *ray)
 	t_position intercept;
 	t_position	step;
 
-	intercept.y = floorf(data->player.initial_position.y);
+	intercept.y = floor(data->player.initial_position.y);
 	if (ray->isFacingDown)
 		intercept.y += 1;
 	intercept.x = data->player.initial_position.x + (intercept.y - data->player.initial_position.y) / tan(ray->angle);
@@ -128,21 +125,37 @@ void	castHorizontalRay(t_data *data, t_ray *ray)
 
 }
 
+
+t_ray	find_intersection(t_data *data, float rayAngle)
+{
+	t_ray	horizontal;
+	t_ray	vertical;
+	
+	rayAngle = normalizeAngle(rayAngle);
+	horizontal = create_ray(rayAngle);
+	vertical = create_ray(rayAngle);
+	castHorizontalRay(data, &horizontal);
+	castVerticalRay(data, &vertical);
+	if (vertical.distance < horizontal.distance || horizontal.distance == 0)
+		return (vertical);
+	return (horizontal);
+}
+
 void	castAllRays(t_player *player, t_data *data)
 {
-	float	rayAngle;
+	float		rayAngle;
 	int		stripId;
 
-	rayAngle = player->rotationAngle - (FOV_ANGLE / 2);
 	stripId = 0;
+	rayAngle = player->rotationAngle - (FOV_ANGLE / 2);
 	while (stripId < NUM_RAYS)
 	{
-		data->rays[stripId] = create_ray(rayAngle);
-		castHorizontalRay(data, &data->rays[stripId]);
-		castVerticalRay(data, &data->rays[stripId]);
+		data->rays[stripId] = find_intersection(data, rayAngle);
+		//castHorizontalRay(data, &data->rays[stripId]);
+		//castVerticalRay(data, &data->rays[stripId]);
 		rayAngle += FOV_ANGLE / NUM_RAYS;
 		stripId++;
 	}
 
-}*/
+}
 
