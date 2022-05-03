@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/02 17:22:51 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/02 19:57:48 by lauremass        ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@
 # define FOV_ANGLE (60 * M_PI / 180)
 # define NUM_RAYS WIN_WIDTH
 # define MINI_SCALE 1
-# define DELTA_TIME 0.003
+# define DELTA_TIME 0.03
 # define ROTATION_SPEED	0.3
 # define TILE_SIZE	30
 

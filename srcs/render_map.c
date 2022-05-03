@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:37:17 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/02 16:02:18 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/02 23:22:28 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	render_player(t_player player, t_data *data)
 	int	y;
 	t_rect	rect;
 
-	x = player.initial_position.x * (WIN_WIDTH / data->map.widht);
-	y = player.initial_position.y * (WIN_HEIGHT / data->map.height);
+	x = player.initial_position.x * TILE_SIZE;
+	y = player.initial_position.y * TILE_SIZE;
 	rect = create_rect(x, y, player.width, player.height);
 	render_rect(&data->img, rect, RED);
 	// TODO render FOV

@@ -6,7 +6,7 @@
 /*   By: lmasson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:08:47 by lmasson           #+#    #+#             */
-/*   Updated: 2022/05/02 17:36:14 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/02 23:21:59 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_ray	create_ray(float rayAngle)
 	ray.wallHit.y = 0;
 	ray.distance = 0;
 	ray.wasHitVertical = 0;
-	ray.wallHitContent = '1';
+	ray.wallHitContent = 1;
 	return (ray);
 }
 
@@ -70,10 +70,10 @@ void	castVerticalRay(t_data *data, t_ray *ray)
 	if (ray->isFacingRight)
 		intercept.x += TILE_SIZE;
 	intercept.y = data->player.initial_position.y + (intercept.x - data->player.initial_position.x) * tan(ray->angle);
-	step.x = 1;
+	step.x = TILE_SIZE;
 	if (ray->isFacingLeft)
 		step.x *= -1;
-	step.y = 1 * tan(ray->angle);
+	step.y = TILE_SIZE * tan(ray->angle);
 	if ((ray->isFacingUp && 0 < step.y) || (ray->isFacingRight && step.y < 0))
 		step.x *= -1;
 	findNextInterceptVrtc(data, ray, intercept, step);
@@ -116,10 +116,10 @@ void	castHorizontalRay(t_data *data, t_ray *ray)
 	if (ray->isFacingDown)
 		intercept.y += TILE_SIZE;
 	intercept.x = data->player.initial_position.x + (intercept.y - data->player.initial_position.y) / tan(ray->angle);
-	step.y = 1;
+	step.y = TILE_SIZE;
 	if (ray->isFacingUp)
 		step.y *= -1;
-	step.x = 1 / tan(ray->angle);
+	step.x = TILE_SIZE / tan(ray->angle);
 	if ((ray->isFacingLeft && 0 < step.x) || (ray->isFacingRight && step.x < 0))
 		step.x *= -1;
 	findNextInterceptHrzt(data, ray, intercept, step);

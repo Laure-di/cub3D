@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:56:22 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/02 16:31:05 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/02 20:02:46 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int		hitWall(t_position new, t_map map) // FIX rentre un peu dans certains murs 
 	int floorx;
 	int	floory;
 
-	floorx = floorf(new.x);
-	floory = floorf(new.y);
+	floorx = floor(new.x);
+	floory = floor(new.y);
 	if (floorx < 0 || map.widht <= floorx || floory < 0 || map.height <= floory)
 		return (1);
 	return (map.matrix[floory][floorx] == '1');
