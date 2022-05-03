@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:39:38 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/03 11:33:42 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/03 11:54:21 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_ray	create_ray(float rayAngle)
 		ray.isFacingRight = 1;
 	ray.isFacingUp = !ray.isFacingDown;
 	ray.isFacingLeft = !ray.isFacingRight;
-	ray.angle = normalizeAngle(rayAngle);
+	ray.angle = rayAngle;
 	ray.wallHit.x = 0;
 	ray.wallHit.y = 0;
 	ray.distance = 0;
@@ -48,7 +48,7 @@ void	verticalIntersection(t_data *data, t_ray *ray, t_position intercept, t_posi
 		hit = hitWall(next, data->map);
 		if (hit == 1)
 		{
-			distance = distanceBetweenPoints(data->player.initial_position, next); 
+			distance = distanceBetweenPoints(data->player.initial_position, intercept); 
 			if (distance < ray->distance || ray->distance == 0.0)
 			{
 				ray->wallHit.x = intercept.x;
@@ -72,7 +72,7 @@ void	castVerticalRay(t_data *data, t_ray *ray)
 	intercept.x = floor(data->player.initial_position.x);
 	if (ray->isFacingRight)
 		intercept.x += 1;
-	intercept.y = data->player.initial_position.y + intercept.x - data->player.initial_position.x * tan(ray->angle);
+	intercept.y = data->player.initial_position.y + ((intercept.x - data->player.initial_position.x) * tan(ray->angle));
 	step.x = 1;
 	if (ray->isFacingLeft)
 		step.x *= -1;
@@ -115,7 +115,7 @@ void	castHorizontalRay(t_data *data, t_ray *ray)
 	intercept.y = floor(data->player.initial_position.y);
 	if (ray->isFacingDown)
 		intercept.y += 1;
-	intercept.x = data->player.initial_position.x + (intercept.y - data->player.initial_position.y) / tan(ray->angle);
+	intercept.x = data->player.initial_position.x + ((intercept.y - data->player.initial_position.y) / tan(ray->angle));
 	step.y = 1;
 	if (ray->isFacingUp)
 		step.y *= -1;
