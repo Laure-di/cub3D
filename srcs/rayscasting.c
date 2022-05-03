@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:39:38 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/03 13:30:34 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/03 14:23:59 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ t_ray	create_ray(float rayAngle)
 	ray.isFacingRight = 0;
 	if (0 < rayAngle && rayAngle < M_PI)
 		ray.isFacingDown = 1;
-	if (rayAngle < (0.5 * M_PI) || rayAngle > (1.5 * M_PI))
-		ray.isFacingRight = 1;
+	if (rayAngle > (0.5 * M_PI) && rayAngle < (1.5 * M_PI))
+		ray.isFacingLeft = 1;
 	ray.isFacingUp = !ray.isFacingDown;
-	ray.isFacingLeft = !ray.isFacingRight;
+	ray.isFacingRight = !ray.isFacingLeft;
 	ray.angle = rayAngle;
 	ray.wallHit.x = 0;
 	ray.wallHit.y = 0;
@@ -44,7 +44,7 @@ void	verticalIntersection(t_data *data, t_ray *ray, t_position intercept, t_posi
 		next.x = intercept.x;
 		next.y = intercept.y;
 		if (ray->isFacingLeft)
-			next.x  -= 1;
+			next.x -= 1.0;
 		hit = hitWall(next, data->map);
 		//printf("Vertical hit = %i\n", hit);
 		if (hit == 1)
@@ -71,17 +71,16 @@ void	castVerticalRay(t_data *data, t_ray *ray)
 	t_position	step;
 
 	intercept.x = floor(data->player.initial_position.x);
-	if (ray->isFacingRight)
+	if (!ray->isFacingLeft)
 		intercept.x += 1;
 	intercept.y = data->player.initial_position.y + ((intercept.x - data->player.initial_position.x) * tan(ray->angle));
 	step.x = 1;
 	if (ray->isFacingLeft)
 		step.x *= -1;
 	step.y = 1 * tan(ray->angle);
-	if ((ray->isFacingDown && 0 < step.y) || (ray->isFacingDown && step.y < 0))
+	if ((!ray->isFacingDown && 0 < step.y) || (ray->isFacingDown && step.y < 0))
 		step.y *= -1;
 	verticalIntersection(data, ray, intercept, step);
-
 }
 
 void	horizontalIntersection(t_data *data, t_ray *ray, t_position intercept, t_position step)
@@ -92,7 +91,7 @@ void	horizontalIntersection(t_data *data, t_ray *ray, t_position intercept, t_po
 	{
 		next.x = intercept.x;
 		next.y = intercept.y;
-		if (ray->isFacingUp)
+		if (!ray->isFacingDown)
 			next.y -= 1;
 		ray->wallHitContent = hitWall(next, data->map);
 		//printf("Horizontal hit : %i\n", ray->wallHitContent);
