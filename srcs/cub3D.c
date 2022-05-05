@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:05:20 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/03 12:28:16 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/05 16:39:31 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	clear_data(t_data *data)
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
+	free(data->rays);
 }
 
 static int	__data_init(t_data *data, char const * const filename)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rayscasting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:39:38 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/05 10:15:49 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/05 17:42:47 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ t_ray	create_ray(float rayAngle)
 	t_ray	ray;
 
 	ray.isFacingDown = 0;
-	ray.isFacingRight = 0;
+	ray.isFacingLeft = 0;
 	if (0 < rayAngle && rayAngle < M_PI)
 		ray.isFacingDown = 1;
 	if (rayAngle > (0.5 * M_PI) && rayAngle < (1.5 * M_PI))
 		ray.isFacingLeft = 1;
 	ray.isFacingUp = !ray.isFacingDown;
 	ray.isFacingRight = !ray.isFacingLeft;
-	ray.angle = rayAngle;
+	ray.angle = normalizeAngle(rayAngle);
 	ray.wallHit.x = 0;
 	ray.wallHit.y = 0;
 	ray.distance = 0;
@@ -36,7 +36,6 @@ t_ray	create_ray(float rayAngle)
 void	verticalIntersection(t_data *data, t_ray *ray, t_position intercept, t_position step) //TO_DO reduire la fonction
 {
 	t_position 	next;
-	int		hit;
 	float		distance;
 
 	while (0 <= intercept.x && intercept.x < WIN_WIDTH && 0 <= intercept.y && intercept.y < WIN_HEIGHT)
@@ -45,17 +44,16 @@ void	verticalIntersection(t_data *data, t_ray *ray, t_position intercept, t_posi
 		next.y = intercept.y;
 		if (ray->isFacingLeft)
 			next.x -= 1.0;
-		hit = hitWall(next, data->map);
 		//printf("Vertical hit = %i\n", hit);
-		if (hit == 1)
+		if (hitWall(next, data->map))
 		{
-			distance = distanceBetweenPoints(data->player.initial_position, intercept); 
+			distance = distanceBetweenPoints(data->player.initial_position, intercept);
 			if (distance < ray->distance || ray->distance == 0)
 			{
 				ray->wallHit.x = intercept.x;
 				ray->wallHit.y = intercept.y;
 				ray->wasHitVertical = 1;
-				ray->wallHitContent = hit;
+				ray->wallHitContent = 1;
 				ray->distance = distance;
 				break ;
 			}

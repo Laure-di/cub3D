@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:56:22 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/05 10:06:57 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/05 16:03:13 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ float	normalizeAngle(float angle)
 	return (angle);
 }
 
-int		hitWall(t_position new, t_map map) // FIX rentre un peu dans certains murs + un mur invisible en bas du départ
+int		hitWall(t_position new, t_map map)
 {
 	int floorx;
 	int	floory;

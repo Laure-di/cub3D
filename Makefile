@@ -41,7 +41,8 @@ SRCS	= cub3D.c			\
 		  move.c			\
 		  render_map.c		\
 		  render_rays.c		\
-		  rayscasting.c
+		  rayscasting.c		\
+		  render_3d.c
 
 ######################################
 #            OBJECT FILES            #

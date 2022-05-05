@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/05 10:22:34 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/05 17:43:50 by lauremass        ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -36,17 +36,18 @@
 #  define WIN_HEIGHT 512
 # endif
 
-# define FOV_ANGLE 60
+# define FOV_ANGLE  90
 # define NUM_RAYS WIN_WIDTH
-# define MINI_SCALE 1
+# define MINI_SCALE 0.3
 # define MOVE_SPEED 0.3
-# define ROTATION_SPEED	3.0
-# define TILE_SIZE	30
+# define ROTATION_SPEED	1.0
+# define TILE_SIZE	16
 # define DIST_PROJ_PLANE ((WIN_WIDTH / 2) / tan(FOV_ANGLE / 2))
 
-# define BLACK_PIX 0x000000
+# define BLACK 0x000000
 # define WHITE 0xffffff
 # define GOLD 0xffd700
+# define SHADE_GOLD 0xffb600
 # define RED 0xff0000
 
 typedef struct	s_img	t_img;
@@ -147,7 +148,7 @@ typedef struct	s_data
 	t_ray		*rays;
 } t_data;
 
-
+void	render_3d(t_data *data);
 
 int				main(int argc, char **argv);
 void			clear_data(t_data *data);
