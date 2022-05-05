@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/03 10:32:02 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/05 10:22:34 by lauremass        ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -36,12 +36,13 @@
 #  define WIN_HEIGHT 512
 # endif
 
-# define FOV_ANGLE (60 * M_PI / 180)
+# define FOV_ANGLE 60
 # define NUM_RAYS WIN_WIDTH
 # define MINI_SCALE 1
-# define DELTA_TIME 0.03
-# define ROTATION_SPEED	0.3
+# define MOVE_SPEED 0.3
+# define ROTATION_SPEED	3.0
 # define TILE_SIZE	30
+# define DIST_PROJ_PLANE ((WIN_WIDTH / 2) / tan(FOV_ANGLE / 2))
 
 # define BLACK_PIX 0x000000
 # define WHITE 0xffffff

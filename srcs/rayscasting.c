@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:39:38 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/03 14:23:59 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/05 10:15:49 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,14 +132,13 @@ void	castAllRays(t_player *player, t_data *data)
 	float	rayAngle;
 	int		stripId;
 
-	rayAngle = player->rotationAngle - (FOV_ANGLE / 2);
 	stripId = 0;
 	while (stripId < NUM_RAYS)
 	{
+		rayAngle = player->rotationAngle + atan(stripId - (NUM_RAYS / 2)) / DIST_PROJ_PLANE;
 		data->rays[stripId] = create_ray(rayAngle);
 		castHorizontalRay(data, &data->rays[stripId]);
 		castVerticalRay(data, &data->rays[stripId]);
-		rayAngle += FOV_ANGLE / NUM_RAYS;
 		stripId++;
 	}
 
