@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:28:51 by majacque          #+#    #+#             */
-/*   Updated: 2022/05/06 18:09:16 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/06 18:37:19 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	find_x_offset(t_ray ray, t_img texture)
 {
+	int	offset;
 	if (ray.wasHitVertical)
-		return ((int)ray.wallHit.y % texture.height);
-	return ((int)ray.wallHit.x % texture.width);
+		offset = fmod(ray.wallHit.y, 1) * texture.height;
+	else
+		offset = fmod(ray.wallHit.x, 1) * texture.width;
+	return (offset);
 }
 
 int	find_y_offset(int wall_strip_height, int y, int height_texture)
@@ -34,9 +37,8 @@ void	display_texture(int wall_strip_height, t_data *data, t_img texture, t_ray r
 	int 		y;
 	int 		wall_top_pixel;
 	int		wall_bottom_pixel;
-	t_position	offset;
+	t_offset	offset;
 	char		*color;
-	int		colori;
 
 	wall_top_pixel = (WIN_HEIGHT / 2) - (wall_strip_height / 2);
 	if (wall_top_pixel < 0)
@@ -50,9 +52,8 @@ void	display_texture(int wall_strip_height, t_data *data, t_img texture, t_ray r
 	{
 		offset.y = find_y_offset(wall_strip_height, y, texture.height);
 		//printf("y = %f, x = %f\n", offset.y, offset.x);
-		color = texture.adrr + ((int)offset.y * texture.line_len + (int)offset.x * (texture.bpp / 8));
-		colori = *(unsigned int*)color;
-		img_pix_put(&data->img, i, y, colori);
+		color = texture.adrr + (offset.y * texture.line_len + offset.x * (texture.bpp / 8));
+		img_pix_put(&data->img, i, y, *(unsigned int*)color);
 		y++;
 	}
 }	
