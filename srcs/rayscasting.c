@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:39:38 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/06 15:39:52 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/06 19:03:22 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ t_ray	create_ray(float rayAngle)
 	ray.wallHit.x = 0;
 	ray.wallHit.y = 0;
 	ray.distance = 0;
+	ray.hitNorth = 0;
+	ray.hitSouth = 0;
+	ray.hitEast = 0;
+	ray.hitWest = 0;
 	ray.wasHitVertical = 0;
 	ray.wallHitContent = 1;
 	return (ray);
@@ -53,6 +57,10 @@ void	verticalIntersection(t_data *data, t_ray *ray, t_position intercept, t_posi
 				ray->wallHit.y = intercept.y;
 				ray->wasHitVertical = 1;
 				ray->wallHitContent = 1;
+				ray->hitWest = !ray->isFacingLeft;
+				ray->hitEast = !ray->hitWest;
+				ray->hitNorth = 0;
+				ray->hitSouth = 0;
 				ray->distance = distance;
 				break ;
 			}
@@ -96,6 +104,8 @@ void	horizontalIntersection(t_data *data, t_ray *ray, t_position intercept, t_po
 			ray->wallHit.x = intercept.x;
 			ray->wallHit.y = intercept.y;
 			ray->wasHitVertical = 0;
+			ray->hitNorth = !ray->isFacingUp;
+			ray->hitSouth = !ray->hitNorth;
 			ray->distance = distanceBetweenPoints(data->player.initial_position, intercept);
 			break ;
 		}

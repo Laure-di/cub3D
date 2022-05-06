@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/06 18:15:35 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/06 18:56:33 by lmasson          ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -141,6 +141,10 @@ typedef struct s_ray
 	int		isFacingLeft;
 	int		isFacingRight;
 	int		wallHitContent;
+	int		hitNorth;
+	int		hitSouth;
+	int		hitEast;
+	int		hitWest;
 } t_ray;
 
 typedef struct	s_data

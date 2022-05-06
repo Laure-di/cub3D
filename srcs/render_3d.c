@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:28:51 by majacque          #+#    #+#             */
-/*   Updated: 2022/05/06 18:42:01 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/06 18:57:28 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	display_texture(int wall_strip_height, t_data *data, t_img texture, t_ray r
 
 void	render_texture(int wall_strip_height, t_data *data, int i)
 {
-	if (data->rays[i].isFacingUp)
+	if (data->rays[i].hitNorth)
 		display_texture(wall_strip_height, data, data->textures.north, data->rays[i], i);
-	else if (data->rays[i].isFacingDown)
+	else if (data->rays[i].hitSouth)
 		display_texture(wall_strip_height,  data, data->textures.south, data->rays[i], i);
-	else if (data->rays[i].isFacingLeft)
+	else if (data->rays[i].hitWest)
 		display_texture(wall_strip_height, data, data->textures.west, data->rays[i], i);	
-	else if (data->rays[i].isFacingRight)
+	else if (data->rays[i].hitEast)
 		display_texture(wall_strip_height, data, data->textures.east, data->rays[i], i);	
 
 }
