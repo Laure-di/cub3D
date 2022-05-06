@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 21:20:26 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/05 18:03:52 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/06 12:49:49 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	print_data(t_data data)
 		printf("%s\n", data.map.matrix[i++]);
 	printf("width : %i, height : %i\n", data.map.widht, data.map.height);
 	printf("player position : %f, height : %f\n", data.player.initial_position.x, data.player.initial_position.y);
+	printf("texture width : %i\n", data.textures.north.width);
 /*	while (i < WIN_HEIGHT)
 	{
 		printf("distance ray : %f\n", data.rays[i].distance);
