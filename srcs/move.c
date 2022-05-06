@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:56:22 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/05 16:03:13 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/05 19:16:50 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	move_player_position(t_player *player, t_data *data)
 	float		moveStep;
 	t_position	new;
 
-	moveStep = player->walkDirection * player->walkSpeed;
+	moveStep = player->walkDirection * player->walkSpeed * MOVE_SPEED;
 	player->rotationAngle += player->turnDirection * player->turnSpeed; // FIX une fois à gauche + une fois à droite ne fait pas revenir au centre
 	new.x = player->initial_position.x + cos(player->rotationAngle + player->direction) * moveStep;
 	new.y = player->initial_position.y + sin(player->rotationAngle + player->direction) * moveStep;

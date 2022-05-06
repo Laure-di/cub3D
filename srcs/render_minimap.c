@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:37:17 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/03 12:27:59 by majacque         ###   ########.fr       */
+/*   Updated: 2022/05/05 19:17:29 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	render_miniplayer(t_player player, t_data *data)
 	int	y;
 	t_rect	rect;
 
-	x = player.initial_position.x * TILE_SIZE * MINI_SCALE;
-	y = player.initial_position.y * TILE_SIZE * MINI_SCALE;
+	x = player.initial_position.x * MINI_SCALE * TILE_SIZE;
+	y = player.initial_position.y *  MINI_SCALE * TILE_SIZE;
 	rect = create_scale_rect(x, y, player.width, player.height);
 	render_rect(&data->img, rect, RED);
 	/* draw_line(&data->img, x, y,

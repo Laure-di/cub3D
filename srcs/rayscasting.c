@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:39:38 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/05 17:42:47 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/06 11:09:20 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	castVerticalRay(t_data *data, t_ray *ray)
 	t_position intercept;
 	t_position	step;
 
-	intercept.x = floor(data->player.initial_position.x);
+	intercept.x = floor(data->player.initial_position.x / 1) * 1;
 	if (!ray->isFacingLeft)
 		intercept.x += 1;
 	intercept.y = data->player.initial_position.y + ((intercept.x - data->player.initial_position.x) * tan(ray->angle));
@@ -111,7 +111,7 @@ void	castHorizontalRay(t_data *data, t_ray *ray)
 	t_position intercept;
 	t_position	step;
 
-	intercept.y = floor(data->player.initial_position.y);
+	intercept.y = floor(data->player.initial_position.y / 1) * 1;
 	if (ray->isFacingDown)
 		intercept.y += 1;
 	intercept.x = data->player.initial_position.x + ((intercept.y - data->player.initial_position.y) / tan(ray->angle));
@@ -131,9 +131,11 @@ void	castAllRays(t_player *player, t_data *data)
 	int		stripId;
 
 	stripId = 0;
+	rayAngle = player->rotationAngle - (FOV_ANGLE / 2);
 	while (stripId < NUM_RAYS)
 	{
-		rayAngle = player->rotationAngle + atan(stripId - (NUM_RAYS / 2)) / DIST_PROJ_PLANE;
+		rayAngle += FOV_ANGLE / NUM_RAYS;
+		//rayAngle = player->rotationAngle + atan(stripId - (NUM_RAYS / 2)) / DIST_PROJ_PLANE;
 		data->rays[stripId] = create_ray(rayAngle);
 		castHorizontalRay(data, &data->rays[stripId]);
 		castVerticalRay(data, &data->rays[stripId]);
