@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:42:10 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/05 19:21:44 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/06 15:32:54 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	render(t_data *data)
 	render_minimap(data->map, data);
 	render_miniplayer(data->player, data);
 	render_rays(data, data->rays, data->player);
-	print_data(*data);
+	//print_data(*data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);
 	return (1);
 }

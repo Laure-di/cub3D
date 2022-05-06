@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:39:38 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/06 11:09:20 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/06 15:39:52 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ t_ray	create_ray(float rayAngle)
 
 	ray.isFacingDown = 0;
 	ray.isFacingLeft = 0;
-	if (0 < rayAngle && rayAngle < M_PI)
+	ray.angle = normalizeAngle(rayAngle);
+	if (0 < ray.angle && ray.angle < M_PI)
 		ray.isFacingDown = 1;
-	if (rayAngle > (0.5 * M_PI) && rayAngle < (1.5 * M_PI))
+	if (ray.angle > (0.5 * M_PI) && ray.angle < (1.5 * M_PI))
 		ray.isFacingLeft = 1;
 	ray.isFacingUp = !ray.isFacingDown;
 	ray.isFacingRight = !ray.isFacingLeft;
-	ray.angle = normalizeAngle(rayAngle);
 	ray.wallHit.x = 0;
 	ray.wallHit.y = 0;
 	ray.distance = 0;
@@ -44,11 +44,10 @@ void	verticalIntersection(t_data *data, t_ray *ray, t_position intercept, t_posi
 		next.y = intercept.y;
 		if (ray->isFacingLeft)
 			next.x -= 1.0;
-		//printf("Vertical hit = %i\n", hit);
 		if (hitWall(next, data->map))
 		{
 			distance = distanceBetweenPoints(data->player.initial_position, intercept);
-			if (distance < ray->distance || ray->distance == 0)
+			if (distance < ray->distance || ray->distance == 0.0)
 			{
 				ray->wallHit.x = intercept.x;
 				ray->wallHit.y = intercept.y;
@@ -92,7 +91,6 @@ void	horizontalIntersection(t_data *data, t_ray *ray, t_position intercept, t_po
 		if (!ray->isFacingDown)
 			next.y -= 1;
 		ray->wallHitContent = hitWall(next, data->map);
-		//printf("Horizontal hit : %i\n", ray->wallHitContent);
 		if (ray->wallHitContent == 1)
 		{
 			ray->wallHit.x = intercept.x;

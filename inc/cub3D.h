@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/06 11:10:00 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/06 16:22:15 by lmasson          ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -116,8 +116,8 @@ typedef	struct s_player
 	t_position	initial_position;
 	float		width;
 	float		height;
-	int			turnDirection;
-	int			walkDirection;
+	int		turnDirection;
+	int		walkDirection;
 	float		rotationAngle;
 	float		walkSpeed;
 	float		turnSpeed;
@@ -128,7 +128,7 @@ typedef struct s_ray
 {
 	float	angle;
 	t_position	wallHit;
-	float	distance;
+	float		distance;
 	int		wasHitVertical;
 	int		isFacingUp;
 	int		isFacingDown;

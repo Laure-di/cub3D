@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:56:22 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/05 19:16:50 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/06 15:35:09 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 float	normalizeAngle(float angle)
 {
 	angle = remainder(angle, (M_PI * 2));
-	if (angle < 0)
-		angle = M_PI * 2 + angle;
+	if (angle < 0.00)
+		angle = (M_PI * 2) + angle;
 	return (angle);
 }
 
