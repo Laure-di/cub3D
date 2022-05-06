@@ -6,7 +6,8 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/05 18:13:57 by majacque         ###   ########.fr       */
+/*   Updated: 2022/05/06 11:10:00 by lauremass        ###   ########.fr       */
+
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +26,7 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include "../libft/libft.h"
+# include "lookup_table.h"
 
 # ifndef WIN_WIDTH
 #  define WIN_WIDTH 1024
@@ -33,13 +35,43 @@
 # ifndef WIN_HEIGHT
 #  define WIN_HEIGHT 512
 # endif
-// TODO integrer tile_size dans 
 
-# define TILE_SIZE 64
-# define FOV_ANGLE (60 * M_PI / 180)
-# define NUM_RAYS WINDOW_WIDTH
+#  define FOV_ANGLE ((60 * M_PI) / 180)
+# define NUM_RAYS WIN_WIDTH
+# define MINI_SCALE 0.3
+# define MOVE_SPEED 0.3
+# define ROTATION_SPEED	2.0
+# define TILE_SIZE	32
+# define DIST_PROJ_PLANE ((WIN_WIDTH / 2) / tan(FOV_ANGLE / 2))
+
+# define BLACK 0x000000
+# define WHITE 0xffffff
+# define GOLD 0xffd700
+# define SHADE_GOLD 0xffb600
+# define RED 0xff0000
 
 typedef struct	s_img	t_img;
+typedef struct s_texture	t_texture;
+typedef struct s_map	t_map;
+typedef struct s_minimap t_minimap;
+typedef struct s_data	t_data;
+typedef struct s_position	t_position;
+typedef struct s_player	t_player;
+typedef struct s_rect	t_rect;
+
+typedef struct s_position
+{
+	float	x;
+	float	y;
+}	t_position;
+
+typedef struct	s_rect
+{
+	t_position	pos;
+	int			width;
+	int			height;
+	int			color;
+}	t_rect;
 
 typedef struct s_img
 {
@@ -52,9 +84,6 @@ typedef struct s_img
 	int			endian;
 }	t_img;
 
-
-typedef struct s_texture	t_texture;
-
 typedef struct s_texture
 {
 	t_img	north;
@@ -65,8 +94,6 @@ typedef struct s_texture
 	int		ceiling_color;
 }	t_texture;
 
-typedef struct s_map	t_map;
-
 typedef struct s_map
 {
 	char	**matrix;
@@ -76,27 +103,13 @@ typedef struct s_map
 	int		player_pos_y;
 }	t_map;
 
-typedef struct s_data	t_data;
-
-typedef struct	s_data
+typedef struct	s_minimap
 {
-	// int			win_size;
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_img		img;
-	t_texture	textures;
-	t_map		map;
-} t_data;
-
-typedef struct s_position	t_position;
-
-typedef struct s_position
-{
-	float	x;
-	float	y;
-}	t_position;
-
-typedef struct s_player	t_player;
+	t_position	tile;
+	int	tile_width;
+	int	tile_height;
+	int	tile_color;
+}	t_minimap;
 
 typedef	struct s_player
 {
@@ -108,17 +121,67 @@ typedef	struct s_player
 	float		rotationAngle;
 	float		walkSpeed;
 	float		turnSpeed;
+	float		direction;
 }	t_player;
 
+typedef struct s_ray
+{
+	float	angle;
+	t_position	wallHit;
+	float	distance;
+	int		wasHitVertical;
+	int		isFacingUp;
+	int		isFacingDown;
+	int		isFacingLeft;
+	int		isFacingRight;
+	int		wallHitContent;
+} t_ray;
 
-int		main(int argc, char **argv);
-void	launch_game(t_data *data);
-int		render(t_data *data);
-void	render_map(t_map map, t_data *data);
-int		render_tile(t_img *img, int tile_y, int tile_x, int tile_color);
-void	img_pix_put(t_img *img, int x, int y, int color);
-int		parsing(t_data *data, char const *const filename);
-int		check_map(t_map *map);
-void	clear_map(char ***map, int height);
+typedef struct	s_data
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		img;
+	t_texture	textures;
+	t_map		map;
+	t_player	player;
+	t_ray		*rays;
+} t_data;
+
+void	render_3d(t_data *data);
+
+int				main(int argc, char **argv);
+void			clear_data(t_data *data);
+void			launch_game(t_data *data);
+int				render(t_data *data);
+void			render_minimap(t_map map, t_data *data);
+int				render_tile(t_img *img, t_minimap mini);
+void			render_background(t_img *img, int floorcolor, int ceilingColor);
+void			draw_line(t_img *img, int x0, int y0, int x1, int y1);
+int				abs_val(int n);
+float			distanceBetweenPoints(t_position start, t_position end);
+void			img_pix_put(t_img *img, int x, int y, int color);
+int				parsing(t_data *data, char const *const filename);
+int				check_map(t_map *map);
+void			clear_map(char ***map, int height);
+int				create_rgb(int r, int g, int b);
+t_player		initialize_player(t_map map);
+int				render_rect(t_img *img, t_rect rect, int color);
+void			render_miniplayer(t_player player, t_data *data);
+t_rect			create_scale_rect(int x, int y, int width, int height);
+void			render_map(t_map map, t_data *data);
+void			render_player(t_player player, t_data *data);
+int				is_player(char c);
+void			mng_event_input(t_data *data);
+int				handle_keypress(int keysim, t_data *data);
+void			move_player_position(t_player *player, t_data *data);
+void			render_rays(t_data *data, t_ray *rays, t_player player);
+void			castAllRays(t_player *player, t_data *data);
+float			normalizeAngle(float angle);
+void			move_player_position(t_player *player, t_data *data);
+int				hitWall(t_position new, t_map map);
+t_ray			find_intersection(t_data *data, float rayAngle);
+/****** TO DELETE ********/
+void	print_data(t_data data);
 
 #endif

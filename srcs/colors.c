@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randian_degree.c                                   :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmasson <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 15:15:21 by lmasson           #+#    #+#             */
-/*   Updated: 2022/04/03 14:29:14 by lauremass        ###   ########.fr       */
+/*   Created: 2022/04/05 21:42:43 by lauremass         #+#    #+#             */
+/*   Updated: 2022/04/05 21:43:10 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-double	deg2rad(double degrees)
+int	create_rgb(int r, int g, int b)
 {
-	return (degrees * (M_PI / 180.0));
+	return (r << 16 | g << 8 | b);
 }
-
-double	rad2deg(double radians)
-{
-	return (radians * (180 / M_PI));
-}
-

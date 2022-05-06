@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel.c                                            :+:      :+:    :+:   */
+/*   render_rays.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 14:09:21 by lmasson           #+#    #+#             */
-/*   Updated: 2022/04/29 05:17:15 by majacque         ###   ########.fr       */
+/*   Created: 2022/04/30 16:54:03 by lauremass         #+#    #+#             */
+/*   Updated: 2022/05/05 19:24:07 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void	img_pix_put(t_img *img, int x, int y, int color)
+void	render_rays(t_data *data, t_ray *rays, t_player player)
 {
-	char	*pixel;
-	int		i;
+	int i;
+	int	x;
+	int	y;
 
-	i = img->bpp - 8;
-	pixel = img->adrr + (y * img->line_len + x * (img->bpp / 8));
-	while (0 <= i)
+	x = player.initial_position.x * MINI_SCALE * TILE_SIZE;
+	y = player.initial_position.y * MINI_SCALE * TILE_SIZE;
+	i = 0;
+	while (i < NUM_RAYS)
 	{
-		if (img->endian != 0)
-			*pixel++ = (color >> i) & 0xFF;
-		else
-			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
-		i -= 8;
+		draw_line(&data->img, x, y,
+					(rays[i].wallHit.x * MINI_SCALE * TILE_SIZE),
+					(rays[i].wallHit.y * MINI_SCALE * TILE_SIZE));
+		i++;
 	}
-	*(int *)pixel = color;
 }

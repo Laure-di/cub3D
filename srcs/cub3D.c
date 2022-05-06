@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:05:20 by lauremass         #+#    #+#             */
-/*   Updated: 2022/04/05 18:52:16 by majacque         ###   ########.fr       */
+/*   Updated: 2022/05/05 16:39:31 by lauremass        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	__error(t_data *data, char const * const str)
 	return (1);
 }
 
-static void	__clear_data(t_data *data)
+void	clear_data(t_data *data)
 {
 	if (data->textures.north.ptr)
 		mlx_destroy_image(data->mlx_ptr, data->textures.north.ptr);
@@ -45,6 +45,7 @@ static void	__clear_data(t_data *data)
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
+	free(data->rays);
 }
 
 static int	__data_init(t_data *data, char const * const filename)
@@ -65,7 +66,7 @@ static int	__data_init(t_data *data, char const * const filename)
 		return (__error(data, "Can't get data addr of the image"));
 	if (parsing(data, filename))
 	{
-		__clear_data(data);
+		clear_data(data);
 		return (1);
 	}
 	return (0);
@@ -84,6 +85,7 @@ int	main(int argc, char **argv)
 		return (1);
 	// TODO setup_game(); avec initialize player?
 	launch_game(&data);
-	__clear_data(&data);
+	//print_data(data);
+	clear_data(&data);
 	return (0);
 }

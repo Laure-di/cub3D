@@ -29,12 +29,20 @@ SRCS	= cub3D.c			\
 		  parsing.c			\
 		  pixel.c			\
 		  player.c			\
-		  randian_degree.c	\
-		  render_map.c		\
+		  math_utils.c		\
+		  render_minimap.c		\
 		  set_color.c		\
 		  set_texture.c		\
 		  setup_game.c		\
 		  check_map.c		\
+		  print_debug.c		\
+		  colors.c			\
+		  events.c			\
+		  move.c			\
+		  render_map.c		\
+		  render_rays.c		\
+		  rayscasting.c		\
+		  render_3d.c
 
 ######################################
 #            OBJECT FILES            #
