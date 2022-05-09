@@ -6,11 +6,12 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:58:04 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/09 12:51:21 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/09 15:49:19 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
+#include "../inc/draw_line.h"
 
 int	abs_val(int n)
 {
@@ -19,33 +20,40 @@ int	abs_val(int n)
 	return (n);
 }
 
-void	draw_line(t_img *img, int x0, int y0, int x1, int y1)
+static void	__init_draw(t_draw *draw, t_offset a, t_offset b)
 {
-	int	dx = abs_val(x1 - x0);
-	int	sx = x0 < x1 ? 1 : -1;
-	int	dy = -abs_val(y1 - y0);
-	int	sy = y0 < y1 ? 1 : -1;
-	int	error = dx + dy;
+	draw->dist.x = abs_val(b.x - a.x);
+	draw->dist.y = -abs_val(b.y - a.y);
+	draw->s.x = -(a.x > b.x) | 1;
+	draw->s.y = -(a.y > b.y) | 1;
+	draw->error = draw->dist.x + draw->dist.y;
+}
 
+void	draw_line(t_img *img, t_offset a, t_offset b)
+{
+	t_draw	draw;
+	int		e2;
+
+	__init_draw(&draw, a, b);
 	while (1)
 	{
-		img_pix_put(img, x0, y0, RED);
-		if (x0 == x1 && y0 == y1)
+		img_pix_put(img, a.x, a.y, RED);
+		if (a.x == b.x && a.y == b.y)
 			break ;
-		int	e2 = 2 * error;
-		if (e2 >= dy)
+		e2 = 2 * draw.error;
+		if (e2 >= draw.dist.y)
 		{
-			if (x0 == x1)
+			if (a.x == b.x)
 				break ;
-			error = error + dy;
-			x0 = x0 + sx;
+			draw.error += draw.dist.y;
+			a.x += draw.s.x;
 		}
-		if (e2 <= dx)
+		if (e2 <= draw.dist.x)
 		{
-			if (y0 == y1)
+			if (a.y == b.y)
 				break ;
-			error = error + dx;
-			y0 = y0 + sy;
+			draw.error += draw.dist.x;
+			a.y += draw.s.y;
 		}
 	}
 }

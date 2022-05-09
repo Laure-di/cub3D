@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:54:57 by majacque          #+#    #+#             */
-/*   Updated: 2022/04/05 19:06:20 by majacque         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:33:46 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@ static bool	__is_line_valid(char *str)
 	return (true);
 }
 
+static int	__calc_map_height(t_data *data, char *line, int *const nb_line_map)
+{
+	if (!*line && data->map.height)
+	{
+		free(line);
+		return (error_parsing("Empty line in map"));
+	}
+	else if (!*line)
+		(*nb_line_map)++;
+	else
+		data->map.height++;
+	return (0);
+}
+
 int	get_infos_map(t_data *data, int fd, int *const nb_line_map)
 {
 	char	*line;
@@ -34,15 +48,8 @@ int	get_infos_map(t_data *data, int fd, int *const nb_line_map)
 		return (error_parsing("Get_next_line failed"));
 	while (ret == 1)
 	{
-		if (!*line && data->map.height)
-		{
-			free(line);
-			return (error_parsing("Empty line in map"));
-		}
-		else if (!*line)
-			(*nb_line_map)++;
-		else
-			data->map.height++;
+		if (__calc_map_height(data, line, nb_line_map))
+			return (1);
 		if (!__is_line_valid(line))
 		{
 			free(line);

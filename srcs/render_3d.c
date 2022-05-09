@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:28:51 by majacque          #+#    #+#             */
-/*   Updated: 2022/05/09 14:55:49 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/09 15:32:01 by majacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	display_texture(int wall_strip_height, t_data *data,
 	wall_top_pixel = (WIN_HEIGHT / 2) - (wall_strip_height / 2);
 	if (wall_top_pixel < 0)
 		wall_top_pixel = 0;
-	offset.x = find_x_offset(data->ray[i], texture);
+	offset.x = find_x_offset(data->rays[i], texture);
 	wall_bottom_pixel = (WIN_HEIGHT / 2) + (wall_strip_height / 2);
 	if (wall_bottom_pixel > WIN_HEIGHT)
 		wall_bottom_pixel = WIN_HEIGHT;
@@ -53,7 +53,7 @@ void	display_texture(int wall_strip_height, t_data *data,
 	while (y < wall_bottom_pixel)
 	{
 		offset.y = find_y_offset(wall_strip_height, y, texture.height);
-		color = texture.adrr + (offset.y * texture.line_len
+		color = texture.adrr + (int)(offset.y * texture.line_len
 				+ offset.x * (texture.bpp / 8));
 		img_pix_put(&data->img, i, y, *(unsigned int *)color);
 		y++;

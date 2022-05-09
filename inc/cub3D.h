@@ -168,7 +168,6 @@ int			render(t_data *data);
 void			render_minimap(t_map map, t_data *data);
 int			render_tile(t_img *img, t_minimap mini);
 void			render_background(t_img *img, int floorcolor, int ceilingColor);
-void			draw_line(t_img *img, int x0, int y0, int x1, int y1);
 int			abs_val(int n);
 float			distance_between_points(t_position start, t_position end);
 void			img_pix_put(t_img *img, int x, int y, int color);
