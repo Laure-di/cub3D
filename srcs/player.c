@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:27:27 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/06 11:04:06 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/09 11:43:18 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_player		initialize_player(t_map map)
 	char		player_orientation;
 
 	player_orientation = __find_orientation(map.matrix, map);
+	printf("%c\n", player_orientation);
 	player.initial_position = __find_position(map.matrix, player_orientation, map);
 	player.width = 3;
 	player.height = 3;

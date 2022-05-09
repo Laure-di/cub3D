@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:37:17 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/05 19:17:29 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/09 11:45:20 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	render_minimap(t_map map, t_data *data)
 	t_rect		rect;
 
 	y = 0;
-	while (y < map.height - 1)
+	while (y <= map.height - 1)
 	{
 		x = 0;
 		while (x < map.widht)
