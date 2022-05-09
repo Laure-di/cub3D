@@ -6,14 +6,14 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 18:05:20 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/05 16:39:31 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/09 12:48:30 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
 
-static int	__error(t_data *data, char const * const str)
+static int	__error(t_data *data, char const *const str)
 {
 	if (data->img.ptr)
 		mlx_destroy_image(data->mlx_ptr, data->img.ptr);
@@ -40,7 +40,6 @@ void	clear_data(t_data *data)
 	if (data->textures.west.ptr)
 		mlx_destroy_image(data->mlx_ptr, data->textures.west.ptr);
 	clear_map(&data->map.matrix, data->map.height);
-
 	mlx_destroy_image(data->mlx_ptr, data->img.ptr);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
@@ -48,20 +47,21 @@ void	clear_data(t_data *data)
 	free(data->rays);
 }
 
-static int	__data_init(t_data *data, char const * const filename)
+static int	__data_init(t_data *data, char const *const filename)
 {
 	ft_bzero(data, sizeof(*data));
-
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		return (__error(data, "Mlx can't be initialize"));
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "cub3D");
+	data->win_ptr = mlx_new_window(data->mlx_ptr,
+			WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!data->win_ptr)
 		return (__error(data, "Can't creat a new window"));
 	data->img.ptr = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!data->img.ptr)
 		return (__error(data, "Can't creat a new image"));
-	data->img.adrr = mlx_get_data_addr(data->img.ptr, &data->img.bpp, &data->img.line_len, &data->img.endian);
+	data->img.adrr = mlx_get_data_addr(data->img.ptr, &data->img.bpp,
+			&data->img.line_len, &data->img.endian);
 	if (!data->img.adrr)
 		return (__error(data, "Can't get data addr of the image"));
 	if (parsing(data, filename))
@@ -83,9 +83,7 @@ int	main(int argc, char **argv)
 	}
 	if (__data_init(&data, argv[1]))
 		return (1);
-	// TODO setup_game(); avec initialize player?
 	launch_game(&data);
-	//print_data(data);
 	clear_data(&data);
 	return (0);
 }

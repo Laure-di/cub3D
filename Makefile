@@ -19,29 +19,29 @@ LIBFT_DIR	= libft
 ######################################
 #            SOURCE FILES            #
 ######################################
-SRCS	= cub3D.c			\
-		  check_extension.c	\
-		  draw_utils.c		\
-		  error_parsing.c	\
-		  get_infos_map.c	\
-		  get_textures.c	\
-		  get_map.c			\
-		  parsing.c			\
-		  pixel.c			\
-		  player.c			\
-		  math_utils.c		\
-		  render_minimap.c		\
-		  set_color.c		\
-		  set_texture.c		\
-		  setup_game.c		\
-		  check_map.c		\
-		  print_debug.c		\
-		  colors.c			\
-		  events.c			\
-		  move.c			\
-		  render_map.c		\
-		  render_rays.c		\
-		  rayscasting.c		\
+SRCS	= cub3D.c					\
+		  check_extension.c			\
+		  draw_utils.c				\
+		  error_parsing.c			\
+		  get_infos_map.c			\
+		  get_textures.c			\
+		  get_map.c				\
+		  parsing.c				\
+		  pixel.c				\
+		  player.c				\
+		  math_utils.c				\
+		  render_minimap.c			\
+		  set_color.c				\
+		  set_texture.c				\
+		  setup_game.c				\
+		  check_map.c				\
+		  print_debug.c				\
+		  colors.c				\
+		  events.c				\
+		  move.c				\
+		  render_rays.c				\
+		  rayscasting.c				\
+		  rayscasting_find_intersection.c	\
 		  render_3d.c
 
 ######################################

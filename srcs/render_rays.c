@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 16:54:03 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/05 19:24:07 by lauremass        ###   ########.fr       */
+/*   Updated: 2022/05/09 14:59:04 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	render_rays(t_data *data, t_ray *rays, t_player player)
 {
-	int i;
+	int	i;
 	int	x;
 	int	y;
 
@@ -24,8 +24,8 @@ void	render_rays(t_data *data, t_ray *rays, t_player player)
 	while (i < NUM_RAYS)
 	{
 		draw_line(&data->img, x, y,
-					(rays[i].wallHit.x * MINI_SCALE * TILE_SIZE),
-					(rays[i].wallHit.y * MINI_SCALE * TILE_SIZE));
+			(rays[i].wall_hit.x * MINI_SCALE * TILE_SIZE),
+			(rays[i].wall_hit.y * MINI_SCALE * TILE_SIZE));
 		i++;
 	}
 }

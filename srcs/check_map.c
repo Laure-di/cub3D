@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 09:53:22 by majacque          #+#    #+#             */
-/*   Updated: 2022/04/05 18:50:19 by majacque         ###   ########.fr       */
+/*   Updated: 2022/05/09 12:46:05 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static bool	__is_player(char c)
 
 static int	__find_player(t_map *map)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	bool	is_player;
 
 	is_player = false;
@@ -71,7 +71,8 @@ static char	**__alloc_matrix(t_map *map)
 
 static int	__is_map_valid(t_map *map, char **matrix_check, int x, int y)
 {
-	if (x == 0 || x == map->widht || y == 0 || y == map->height || map->matrix[y][x] == ' ')
+	if (x == 0 || x == map->widht || y == 0
+		|| y == map->height || map->matrix[y][x] == ' ')
 		return (error_parsing("Map not surrounded by walls"));
 	if (map->matrix[y][x] != '0' && !__is_player(map->matrix[y][x]))
 		return (error_parsing("Invalid character in map"));

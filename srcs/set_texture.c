@@ -6,13 +6,12 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:21:47 by majacque          #+#    #+#             */
-/*   Updated: 2022/05/06 12:59:34 by majacque         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:00:39 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/texture_lookup.h"
 
-// TODO verify the size of imported images
 int	set_north(t_data *data, char *line)
 {
 	char			*filename;
@@ -44,7 +43,7 @@ int	set_north(t_data *data, char *line)
 
 int	set_south(t_data *data, char *line)
 {
-	char	*filename;
+	char			*filename;
 	t_img *const	img = &data->textures.south;
 
 	line += 2;
@@ -73,7 +72,7 @@ int	set_south(t_data *data, char *line)
 
 int	set_east(t_data *data, char *line)
 {
-	char	*filename;
+	char			*filename;
 	t_img *const	img = &data->textures.east;
 
 	line += 2;
@@ -102,7 +101,7 @@ int	set_east(t_data *data, char *line)
 
 int	set_west(t_data *data, char *line)
 {
-	char	*filename;
+	char			*filename;
 	t_img *const	img = &data->textures.west;
 
 	line += 2;

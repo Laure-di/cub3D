@@ -6,7 +6,7 @@
 /*   By: lauremasson <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 21:42:43 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/06 12:11:34 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/09 12:46:29 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,4 @@
 int	create_rgb(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
-}
-
-int	create_rgbt(int r, int g, int b, int t)
-{
-	return (t << 24 | r << 16 | g << 16 | b);
 }

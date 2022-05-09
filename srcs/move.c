@@ -6,13 +6,13 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:56:22 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/06 15:35:09 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/09 13:15:32 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-float	normalizeAngle(float angle)
+float	normalize_angle(float angle)
 {
 	angle = remainder(angle, (M_PI * 2));
 	if (angle < 0.00)
@@ -20,9 +20,9 @@ float	normalizeAngle(float angle)
 	return (angle);
 }
 
-int		hitWall(t_position new, t_map map)
+int	hit_wall(t_position new, t_map map)
 {
-	int floorx;
+	int	floorx;
 	int	floory;
 
 	floorx = floor(new.x);
@@ -34,17 +34,19 @@ int		hitWall(t_position new, t_map map)
 
 void	move_player_position(t_player *player, t_data *data)
 {
-	float		moveStep;
+	float		move_step;
 	t_position	new;
 
-	moveStep = player->walkDirection * player->walkSpeed * MOVE_SPEED;
-	player->rotationAngle += player->turnDirection * player->turnSpeed; // FIX une fois à gauche + une fois à droite ne fait pas revenir au centre
-	new.x = player->initial_position.x + cos(player->rotationAngle + player->direction) * moveStep;
-	new.y = player->initial_position.y + sin(player->rotationAngle + player->direction) * moveStep;
-	if (!hitWall(new, data->map))
+	move_step = player->walk_direction * player->walk_speed * MOVE_SPEED;
+	player->rotation_angle += player->turn_direction * player->turn_speed;
+	new.x = player->initial_position.x
+		+ cos(player->rotation_angle + player->direction) * move_step;
+	new.y = player->initial_position.y
+		+ sin(player->rotation_angle + player->direction) * move_step;
+	if (!hit_wall(new, data->map))
 	{
 		player->initial_position.x = new.x;
 		player->initial_position.y = new.y;
 	}
-	player->rotationAngle = normalizeAngle(player->rotationAngle);
+	player->rotation_angle = normalize_angle(player->rotation_angle);
 }

@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:54 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/06 18:56:33 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/09 14:31:12 by lmasson          ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -122,29 +122,30 @@ typedef	struct s_player
 	t_position	initial_position;
 	float		width;
 	float		height;
-	int		turnDirection;
-	int		walkDirection;
-	float		rotationAngle;
-	float		walkSpeed;
-	float		turnSpeed;
+	int		turn_direction;
+	int		walk_direction;
+	float		rotation_angle;
+	float		walk_speed;
+	float		turn_speed;
 	float		direction;
+	int		move;
 }	t_player;
 
 typedef struct s_ray
 {
 	float	angle;
-	t_position	wallHit;
+	t_position	wall_hit;
 	float		distance;
-	int		wasHitVertical;
-	int		isFacingUp;
-	int		isFacingDown;
-	int		isFacingLeft;
-	int		isFacingRight;
-	int		wallHitContent;
-	int		hitNorth;
-	int		hitSouth;
-	int		hitEast;
-	int		hitWest;
+	int		was_hit_vertical;
+	int		is_facing_up;
+	int		is_facing_down;
+	int		is_facing_left;
+	int		is_facing_right;
+	int		wall_hit_content;
+	int		hit_north;
+	int		hit_south;
+	int		hit_east;
+	int		hit_west;
 } t_ray;
 
 typedef struct	s_data
@@ -160,37 +161,45 @@ typedef struct	s_data
 
 void	render_3d(t_data *data);
 
-int				main(int argc, char **argv);
+int			main(int argc, char **argv);
 void			clear_data(t_data *data);
 void			launch_game(t_data *data);
-int				render(t_data *data);
+int			render(t_data *data);
 void			render_minimap(t_map map, t_data *data);
-int				render_tile(t_img *img, t_minimap mini);
+int			render_tile(t_img *img, t_minimap mini);
 void			render_background(t_img *img, int floorcolor, int ceilingColor);
 void			draw_line(t_img *img, int x0, int y0, int x1, int y1);
-int				abs_val(int n);
-float			distanceBetweenPoints(t_position start, t_position end);
+int			abs_val(int n);
+float			distance_between_points(t_position start, t_position end);
 void			img_pix_put(t_img *img, int x, int y, int color);
-int				parsing(t_data *data, char const *const filename);
-int				check_map(t_map *map);
+int			parsing(t_data *data, char const *const filename);
+int			check_map(t_map *map);
 void			clear_map(char ***map, int height);
-int				create_rgb(int r, int g, int b);
+int			create_rgb(int r, int g, int b);
 t_player		initialize_player(t_map map);
-int				render_rect(t_img *img, t_rect rect, int color);
+int			render_rect(t_img *img, t_rect rect, int color);
 void			render_miniplayer(t_player player, t_data *data);
 t_rect			create_scale_rect(int x, int y, int width, int height);
 void			render_map(t_map map, t_data *data);
 void			render_player(t_player player, t_data *data);
-int				is_player(char c);
+int			is_player(char c);
 void			mng_event_input(t_data *data);
-int				handle_keypress(int keysim, t_data *data);
+int			handle_keypress(int keysim, t_data *data);
 void			move_player_position(t_player *player, t_data *data);
 void			render_rays(t_data *data, t_ray *rays, t_player player);
-void			castAllRays(t_player *player, t_data *data);
-float			normalizeAngle(float angle);
+void			cast_all_rays(t_player *player, t_data *data);
+float			normalize_angle(float angle);
 void			move_player_position(t_player *player, t_data *data);
-int				hitWall(t_position new, t_map map);
+int			hit_wall(t_position new, t_map map);
 t_ray			find_intersection(t_data *data, float rayAngle);
+void			update_ray(t_ray *ray, t_position intercept);
+t_ray			create_ray(float ray_angle);
+void			cast_horizontal_rays(t_data *data, t_ray *ray);
+void			horizontal_intersection(t_data *data, t_ray *ray
+				, t_position intercept, t_position step);
+void			cast_vertical_rays(t_data *data, t_ray *ray);
+void			vertical_intersection(t_data *data, t_ray *ray,
+				t_position intercept, t_position step);
 /****** TO DELETE ********/
 void	print_data(t_data data);
 

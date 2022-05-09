@@ -6,13 +6,13 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:58:04 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/02 13:21:48 by majacque         ###   ########.fr       */
+/*   Updated: 2022/05/09 12:51:21 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-int abs_val(int n)
+int	abs_val(int n)
 {
 	if (n < 0)
 		n *= -1;
@@ -31,29 +31,29 @@ void	draw_line(t_img *img, int x0, int y0, int x1, int y1)
 	{
 		img_pix_put(img, x0, y0, RED);
 		if (x0 == x1 && y0 == y1)
-			break;
+			break ;
 		int	e2 = 2 * error;
 		if (e2 >= dy)
 		{
 			if (x0 == x1)
-				break;
+				break ;
 			error = error + dy;
 			x0 = x0 + sx;
 		}
 		if (e2 <= dx)
 		{
 			if (y0 == y1)
-				break;
+				break ;
 			error = error + dx;
 			y0 = y0 + sy;
 		}
 	}
 }
 
-void render_background(t_img *img, int floorColor, int ceilColor)
+void	render_background(t_img *img, int floorColor, int ceilColor)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < WIN_HEIGHT / 2)
@@ -72,10 +72,10 @@ void render_background(t_img *img, int floorColor, int ceilColor)
 	}
 }
 
-int render_rect(t_img *img, t_rect rect, int color)
+int	render_rect(t_img *img, t_rect rect, int color)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = rect.pos.y;
 	while (i < rect.pos.y + rect.height)
