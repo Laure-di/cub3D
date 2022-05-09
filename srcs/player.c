@@ -6,7 +6,7 @@
 /*   By: majacque <majacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:27:27 by lauremass         #+#    #+#             */
-/*   Updated: 2022/05/09 11:43:18 by lmasson          ###   ########.fr       */
+/*   Updated: 2022/05/09 11:51:27 by lmasson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,19 @@ t_player		initialize_player(t_map map)
 	char		player_orientation;
 
 	player_orientation = __find_orientation(map.matrix, map);
-	printf("%c\n", player_orientation);
 	player.initial_position = __find_position(map.matrix, player_orientation, map);
 	player.width = 3;
 	player.height = 3;
 	player.turnDirection = 0;
 	player.walkDirection = 0;
-	player.rotationAngle = M_PI / 2;
+	if (player_orientation == 'S')
+		player.rotationAngle = M_PI / 2;
+	else if (player_orientation == 'N')
+		player.rotationAngle = (M_PI * 3) / 2;
+	else if(player_orientation == 'W')
+		player.rotationAngle = M_PI;
+	else
+		player.rotationAngle = 0;
 	player.walkSpeed = MOVE_SPEED;
 	player.turnSpeed =  (ROTATION_SPEED * M_PI) / 180;
 	player.direction = 0;
